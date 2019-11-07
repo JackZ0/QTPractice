@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bookindex> <!--根标签-->
+    <entry term="叶节点0">
+        <page>10</page>
+        <page>34-35</page>
+        <page>307-308</page>
+    </entry>
+    <entry term="叶节点1">
+        <entry term="叶节点1.1">
+            <page>115</page>
+            <page>244</page>
+        </entry>
+        <entry term="叶节点1.2">
+            <page>9</page>
+        </entry>
+    </entry>
+	<entry term="叶节点2">
+        <entry term="叶节点2.1">
+            <page>115</page>
+            <page>244</page>
+        </entry>
+        <entry term="叶节点2.2">
+            <page>9</page>
+        </entry>
+    </entry>
+</bookindex>
