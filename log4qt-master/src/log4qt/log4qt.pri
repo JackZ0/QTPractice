@@ -22,6 +22,9 @@
 # 
 # *******************************************************************************
 
+
+TEMPLATE = lib CONFIG += staticlib
+
 INCLUDEPATH += $$PWD/..
 DEPENDPATH += $$PWD/..
 HEADERS += \
