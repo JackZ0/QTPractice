@@ -62,5 +62,4 @@ INPUT(
 ./debug\moc_levelrangefilter.o
 ./debug\moc_listappender.o
 ./debug\moc_stringmatchfilter.o
-./debug\moc_log4qttest.o
 );

@@ -36,7 +36,7 @@ DEFINES -= \
 
 include(../src/log4qt/log4qt.pri)
 
-HEADERS += log4qttest.h
+#HEADERS += log4qttest.h
 SOURCES += log4qttest.cpp
 
 

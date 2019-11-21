@@ -65,6 +65,7 @@ HEADERS += \
     $$PWD/varia/levelmatchfilter.h \
     $$PWD/varia/levelrangefilter.h \
     $$PWD/varia/listappender.h \
+    $$PWD/varia/basicconfigurator.h \
     $$PWD/varia/stringmatchfilter.h
     
 SOURCES += \
