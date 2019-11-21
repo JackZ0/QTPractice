@@ -1,0 +1,9 @@
+2019-11-21 13:20:41 [INFO] Constructor
+2019-11-21 13:20:41 [INFO] Destructor
+2019-11-21 13:20:41 [WARN] warn
+2019-11-21 13:21:13 [DEBUG] qDebug Qt 中文显示!
+2019-11-21 13:21:13 [WARN] qWarning Qt 中文显示!
+2019-11-21 13:21:13 [ERROR] qCritical Qt 中文显示!
+2019-11-21 13:21:13 [INFO] Constructor
+2019-11-21 13:21:13 [INFO] Destructor
+2019-11-21 13:21:13 [WARN] warn

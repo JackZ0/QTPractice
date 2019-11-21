@@ -23,7 +23,7 @@
 # *******************************************************************************
 
 
-TEMPLATE = lib CONFIG += staticlib
+#TEMPLATE = lib CONFIG += staticlib
 
 INCLUDEPATH += $$PWD/..
 DEPENDPATH += $$PWD/..
