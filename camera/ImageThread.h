@@ -17,22 +17,22 @@
 #include <opencv2/video/video.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
 #include<QDebug>
+#include <opencv2/videoio/videoio_c.h>
 
-using namespace cv;
+//using namespace cv;
 
 class ImageThread : public QThread
 {
     Q_OBJECT
 
 public:
-    ImageThread(CvCapture * capture, int num);
+    ImageThread(cv::Mat  capture,int num);
 
 private:
     void run();
-    CvCapture * cap;
-    IplImage * img;
-    Mat currentFrame;
-    QImage frame;
+    cv::Mat  cap;
+    cv::Mat currentFrame;
+    cv::Mat frame;
 
     int LabelNum; //此线程处理的控件的编号
 

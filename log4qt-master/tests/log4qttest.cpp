@@ -36,6 +36,11 @@ int main(int argc, char *argv[])
     strInfo = QStringLiteral("qCritical Qt 中文显示!");
     qCritical(strInfo.toStdString().c_str());
 
+    qDebug("this is a debug message!");
+    qWarning("this is a warning message@");
+    qCritical("this is a critical message");
+    qFatal("this is a fatal message");
+
     Object obj;
     return 0;
 }

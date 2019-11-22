@@ -1,6 +1,6 @@
 #include "MatToQImage.h"
 
-QImage MatToQImage(const Mat& mat)
+QImage MatToQImage(const cv::Mat& mat)
 {
     // 8-bits unsigned, NO. OF CHANNELS=1
     if(mat.type()==CV_8UC1)

@@ -6,6 +6,22 @@
 #include <QLabel>
 #include <QPixmap>
 #include "ImageThread.h"
+#include <opencv2/video.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/cvconfig.h>
+#include <opencv2/imgproc/types_c.h>
+#include <opencv2/highgui/highgui_c.h>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/video/video.hpp>
+#include <opencv2/videoio/videoio_c.h>
+#include <opencv2/videoio/videoio.hpp>
+#include <opencv2/objdetect/objdetect.hpp>
+#include <opencv2/cvconfig.h>
+
+//using namespace cv;
 
 namespace Ui {
 class Widget;
@@ -34,9 +50,9 @@ private:
 
     QTimer * timer;
 
-    CvCapture * cap;
-    QList<CvCapture *> m_CapList;
-    QList<IplImage *> m_ImgList;
+    cv::VideoCapture cap;
+    QList<cv::Mat > m_CapList;
+    QList<cv::Mat > m_ImgList;
     QList<QLabel *> m_LabelList;
 
     IplImage * img;

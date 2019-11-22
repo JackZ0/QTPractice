@@ -16,9 +16,9 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/video/video.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
+#include <Opencv2/core/mat.hpp>
+//using namespace cv;
 
-using namespace cv;
-
-QImage MatToQImage(const Mat&);
+QImage MatToQImage(const cv::Mat&);
 
 #endif

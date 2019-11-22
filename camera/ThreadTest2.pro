@@ -22,8 +22,12 @@ HEADERS  += widget.h \
 
 FORMS    += widget.ui
 
-INCLUDEPATH += F:\Qtpractice\double_camera\OpenCV\include
-               F:\Qtpractice\double_camera\OpenCV\include\opencv2
+INCLUDEPATH += $$PWD/OpenCV/include \
+               $$PWD/OpenCV/include/opencv2
 
-
-LIBS += F:\Qtpractice\double_camera\OpenCV\lib\libopencv_*.a
+LIBS += -L$$PWD/OpenCV/bin -llibopencv_highgui410 \
+        -L$$PWD/OpenCV/bin -llibopencv_core410 \
+        -L$$PWD/OpenCV/bin -llibopencv_imgproc410 \
+        -L$$PWD/OpenCV/bin -llibopencv_imgcodecs410 \
+        -L$$PWD/OpenCV/bin -llibopencv_videoio410 \
+        -L$$PWD/OpenCV/bin -llibopencv_core410 \

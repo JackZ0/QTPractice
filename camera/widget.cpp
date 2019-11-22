@@ -1,19 +1,8 @@
 #include "widget.h"
 #include "ui_widget.h"
 
-#include <opencv2/video.hpp>
-#include <opencv2/opencv.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/core/core.hpp>
-#include <opencv2/cvconfig.h>
-#include <opencv2/imgproc/types_c.h>
-#include <opencv2/highgui/highgui_c.h>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/video/video.hpp>
-#include <opencv2/objdetect/objdetect.hpp>
 
-using namespace cv;
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -34,7 +23,7 @@ Widget::Widget(QWidget *parent) :
 Widget::~Widget()
 {
     delete ui;
-    cvReleaseCapture(& m_CapList[0]);
+
 }
 
 //启动多线程
@@ -63,9 +52,8 @@ void Widget::ShowImage()
 {
     for(int i=0; i<16; i++)
     {
-        m_ImgList << cvQueryFrame(m_CapList.at(i));
-        cvCvtColor(m_ImgList[i],m_ImgList[i],CV_BGR2RGB);
-        QImage image((const uchar *)m_ImgList.at(i)->imageData,m_ImgList.at(i)->width,m_ImgList.at(i)->height,QImage::Format_RGB888);
+        cv::cvtColor(m_CapList[i],m_ImgList[i],cv::COLOR_BGR2RGB);
+        QImage image(m_ImgList[i].data,m_ImgList[i].cols,m_ImgList[i].rows,QImage::Format_RGB888);
         pixmap = QPixmap::fromImage(image);
         m_LabelList.at(i)->setPixmap(pixmap);
     }
@@ -79,7 +67,10 @@ void Widget::ShowImageFromThread(QImage image, int num)
 
 void Widget::OpenCamera()
 {
-    CvCapture * cap = cvCreateCameraCapture(0);
+    cv::VideoCapture capture;
+    capture.open(0,cv::CAP_ANY);
+    cv::Mat frame;
+    capture >> frame;
     for(int i=0; i<16; i++)
-        m_CapList<<cap;
+        m_CapList<<frame;
 }
