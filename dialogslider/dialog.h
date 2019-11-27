@@ -2,21 +2,21 @@
 #define DIALOG_H
 
 #include <QDialog>
-#include <QSpinBox>
-class QSpinBox;
-class QSlider;
+
+namespace Ui {
+class Dialog;
+}
+
 class Dialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    Dialog(QWidget *parent = 0);
+    explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
-signals:
 
 private:
-    QSpinBox *spin;
-    QSlider *slider;
+    Ui::Dialog *ui;
 };
 
 #endif // DIALOG_H

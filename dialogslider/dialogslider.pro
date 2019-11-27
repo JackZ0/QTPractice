@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-11-27T13:19:54
+# Project created by QtCreator 2019-11-27T15:30:22
 #
 #-------------------------------------------------
 
@@ -30,6 +30,9 @@ SOURCES += \
 
 HEADERS += \
         dialog.h
+
+FORMS += \
+        dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
