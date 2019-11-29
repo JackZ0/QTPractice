@@ -6,8 +6,8 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
-    movie = new QMovie(":/img/timg.gif");
-//    movie2 = new QMovie(":/img/timg.gif");
+    movie = new QMovie(":/img/greenled.gif");
+    movie2 = new QMovie(":/img/redled.gif");
 
     connect(this->ui->horizontalSlider,SIGNAL(valueChanged(int)),this->ui->spinBox,SLOT(setValue(int)));
     connect(this->ui->spinBox,SIGNAL(valueChanged(int)),this->ui->horizontalSlider,SLOT(setValue(int)));
@@ -22,9 +22,17 @@ void Dialog::on_pushButton_clicked()
 {
     if(isplaying){
         movie->stop();
-        isplaying = false;
+        ui->label->setGeometry(0,0,40,40);
+        movie2->setScaledSize(QSize(40,40));
+        ui->label->setMovie(movie2);
+
+        movie2->start();
+         isplaying = false;
+
     }
     else{
+        ui->label->setGeometry(0,0,40,40);
+        movie->setScaledSize(QSize(40,40));
         ui->label->setMovie(movie);
         movie->start();
         isplaying = true;
@@ -33,13 +41,15 @@ void Dialog::on_pushButton_clicked()
 
 void Dialog::on_pushButton_2_clicked()
 {
-    if(isplaying){
-        movie->stop();
-        isplaying = false;
+    if(isplaying2){
+        movie2->stop();
+        isplaying2 = false;
     }
     else{
-        ui->label_2->setMovie(movie);
-        movie->start();
-        isplaying = true;
+        ui->warning->setGeometry(100,0,40,40);
+        movie2->setScaledSize(QSize(40,40));
+        ui->warning->setMovie(movie2);
+        movie2->start();
+        isplaying2 = true;
     }
 }

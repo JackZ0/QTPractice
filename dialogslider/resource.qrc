@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>img/timg.gif</file>
+        <file>img/green.gif</file>
+        <file>img/red.gif</file>
+        <file>img/greenled.gif</file>
+        <file>img/redled.gif</file>
     </qresource>
 </RCC>

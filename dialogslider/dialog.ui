@@ -69,22 +69,22 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>80</y>
-     <width>321</width>
-     <height>101</height>
+     <y>70</y>
+     <width>61</width>
+     <height>131</height>
     </rect>
    </property>
    <property name="text">
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="warning">
    <property name="geometry">
     <rect>
      <x>260</x>
      <y>80</y>
-     <width>111</width>
-     <height>131</height>
+     <width>71</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="text">

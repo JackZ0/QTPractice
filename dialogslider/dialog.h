@@ -25,7 +25,11 @@ private slots:
 private:
     Ui::Dialog *ui;
     bool isplaying;
+    bool isplaying2;
+
     QMovie *movie;
+    QMovie *movie2;
+
 
 
 };
