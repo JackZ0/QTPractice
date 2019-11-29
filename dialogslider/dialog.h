@@ -2,6 +2,8 @@
 #define DIALOG_H
 
 #include <QDialog>
+#include <QMovie>
+#include <QLabel>
 
 namespace Ui {
 class Dialog;
@@ -15,8 +17,17 @@ public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
 
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::Dialog *ui;
+    bool isplaying;
+    QMovie *movie;
+
+
 };
 
 #endif // DIALOG_H
