@@ -27,6 +27,7 @@ void Dialog::on_pushButton_clicked()
         ui->label->setMovie(movie2);
 
         movie2->start();
+        ui->label->setAttribute(Qt::WA_TranslucentBackground);
          isplaying = false;
 
     }
@@ -44,6 +45,7 @@ void Dialog::on_pushButton_2_clicked()
     if(isplaying2){
         movie2->stop();
         isplaying2 = false;
+        ui->label->setVisible(false);
     }
     else{
         ui->warning->setGeometry(100,0,40,40);
@@ -51,5 +53,7 @@ void Dialog::on_pushButton_2_clicked()
         ui->warning->setMovie(movie2);
         movie2->start();
         isplaying2 = true;
+
+         ui->label->setVisible(true);
     }
 }
