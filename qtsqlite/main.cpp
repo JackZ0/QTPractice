@@ -17,38 +17,40 @@ int main(int argc, char *argv[])
     else{
         qDebug()<<"successed to connect database";
     }
+
     QSqlQuery sql_query;
-    if(!sql_query.exec("create table student(id int primary key,name text,age int)"))
-    {
-        qDebug() << "Error: Fail to create table."<< sql_query.lastError();
-    }
-    else{
-        qDebug() << "Table created!";
-    }
-    //插入数据
-    if(!sql_query.exec("INSERT INTO student VALUES(1, \"Wang\", 23)"))
+//    if(!sql_query.exec("create table student(id int primary key,name text,age int)"))
+//    {
+//        qDebug() << "Error: Fail to create table."<< sql_query.lastError();
+//    }
+//    else{
+//        qDebug() << "Table created!";
+//    }
+//    //插入数据
+//    if(!sql_query.exec("INSERT INTO student VALUES(1, \"Wang\", 23)"))
+//    {
+//        qDebug() << sql_query.lastError();
+//    }
+//    else
+//    {
+//        qDebug() << "inserted Wang!";
+//    }
+//    if(!sql_query.exec("INSERT INTO student VALUES(2, \"Li\", 23)"))
+//    {
+//        qDebug() << sql_query.lastError();
+//    }
+//    else
+//    {
+//        qDebug() << "inserted Li!";
+//    }
+    QString sqlstr= "INSERT INTO Base_Camera_Info VALUES(4, \"192.168.2.12\",\"administrator\",\"admin123!@#\",\"D:\image\",\"D:\image\",\"5\")";
+    if(!sql_query.exec(sqlstr))
     {
         qDebug() << sql_query.lastError();
     }
     else
     {
-        qDebug() << "inserted Wang!";
-    }
-    if(!sql_query.exec("INSERT INTO student VALUES(2, \"Li\", 23)"))
-    {
-        qDebug() << sql_query.lastError();
-    }
-    else
-    {
-        qDebug() << "inserted Li!";
-    }
-    if(!sql_query.exec("INSERT INTO Base_CameraInfo VALUES(3, \"192.168.2.12\",\"administrator\",\"admin123!@#\",\"D:\image\",\"D:\image\")"))
-    {
-        qDebug() << sql_query.lastError();
-    }
-    else
-    {
-        qDebug() << "inserted Li!";
+        qDebug() << "insert 4 Base_Camera_Info" << endl;
     }
 
     //修改数据
@@ -79,27 +81,27 @@ int main(int argc, char *argv[])
         }
     }
 
-    //删除数据
-    sql_query.exec("delete from student where id = 1");
-    if(!sql_query.exec())
-    {
-        qDebug()<<sql_query.lastError();
-    }
-    else
-    {
-        qDebug()<<"deleted!";
-    }
+//    //删除数据
+//    sql_query.exec("delete from student where id = 1");
+//    if(!sql_query.exec())
+//    {
+//        qDebug()<<sql_query.lastError();
+//    }
+//    else
+//    {
+//        qDebug()<<"deleted!";
+//    }
 
-    //删除表格
-    sql_query.exec("drop table student");
-    if(sql_query.exec())
-    {
-        qDebug() << sql_query.lastError();
-    }
-    else
-    {
-        qDebug() << "table cleared";
-    }
+//    //删除表格
+//    sql_query.exec("drop table student");
+//    if(sql_query.exec())
+//    {
+//        qDebug() << sql_query.lastError();
+//    }
+//    else
+//    {
+//        qDebug() << "table cleared";
+//    }
 
     //关闭数据库
     database.close();
