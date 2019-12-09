@@ -225,7 +225,6 @@ Makefile: ThreadTest2.pro D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/win32-g++/qmake
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/resources.prf \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/moc.prf \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/win32/opengl.prf \
-		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/uic.prf \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/qmake_use.prf \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/file_copies.prf \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/win32/windows.prf \
@@ -235,7 +234,6 @@ Makefile: ThreadTest2.pro D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/win32-g++/qmake
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/lex.prf \
 		ThreadTest2.pro \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/qtmaind.prl \
-		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Widgets.prl \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Gui.prl \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile ThreadTest2.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -403,7 +401,6 @@ D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/qt.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/resources.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/moc.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/win32/opengl.prf:
-D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/uic.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/qmake_use.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/file_copies.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/win32/windows.prf:
@@ -413,7 +410,6 @@ D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/yacc.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/lex.prf:
 ThreadTest2.pro:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/qtmaind.prl:
-D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Widgets.prl:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Gui.prl:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
