@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <QDebug>
-#include <QSqlDatabase>
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +9,6 @@ int main(int argc, char *argv[])
         QStringList drivers = QSqlDatabase::drivers();
         foreach(QString driver,drivers)
             qDebug()<<driver;
-
     w.show();
     return a.exec();
 }

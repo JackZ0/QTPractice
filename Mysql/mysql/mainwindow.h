@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QDebug>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
 namespace Ui {
 class MainWindow;
 }
@@ -17,6 +20,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void connect_mysql();
 };
 
 #endif // MAINWINDOW_H
