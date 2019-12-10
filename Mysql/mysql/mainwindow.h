@@ -21,6 +21,10 @@ public:
 private:
     Ui::MainWindow *ui;
     void connect_mysql();
+    void close();
+    void Mysqlquery(QString StrQuery);
+    QSqlDatabase db;
+
 };
 
 #endif // MAINWINDOW_H
