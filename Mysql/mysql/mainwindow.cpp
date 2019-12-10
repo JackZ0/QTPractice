@@ -8,8 +8,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     connect_mysql();
     QString str1 = "SELECT equipment.ID,equipment.`name`,equipment.`port`,equipment.ip, equipment.`desc`FROM equipment";
-    Mysqlquery(str1);
+//    Mysqlquery(str1);
+
+
     ui->setupUi(this);
+    setView();
+    close();
 }
 
 MainWindow::~MainWindow()
@@ -39,13 +43,47 @@ void MainWindow::connect_mysql(){
 
 void MainWindow::close(){
     db.close();
+    qDebug() << "close db!!";
 }
 
 void MainWindow::Mysqlquery(QString StrQuery){
     QSqlQuery query(db);
     query.exec(StrQuery);
     while(query.next()){
-            qDebug()<<query.value(0).toInt()<<query.value(1).toString();
+            qDebug()<<query.value(0).toInt()<<query.value(1).toString()<<query.value(2).toString();
+//            qDebug()<<query.result();
     }
+
+}
+
+//QSqlQueryModel *model = new QSqlQueryModel;
+//     model->setQuery("SELECT name, salary FROM employee");
+//     model->setHeaderData(0, Qt::Horizontal, tr("Name"));
+//     model->setHeaderData(1, Qt::Horizontal, tr("Salary"));
+
+//     QTableView *view = new QTableView;
+//     view->setModel(model);
+//     view->show();
+void MainWindow::setView(){
+   QSqlQueryModel *model = new QSqlQueryModel;
+
+    model->setQuery("select * from equipment",db);
+
+
+    model->setHeaderData(0,Qt::Horizontal,tr("id"));
+    model->setHeaderData(1,Qt::Horizontal,tr("name"));
+    model->setHeaderData(2,Qt::Horizontal,tr("port"));
+    model->setHeaderData(3,Qt::Horizontal,tr("ip"));
+    model->setHeaderData(4,Qt::Horizontal,tr("desc"));
+
+    qDebug()<< "1";
+     ui->tableView->setModel(model);
+    qDebug()<< "2";
+    ui->tableView->show();
+    qDebug()<< "3";
+
+}
+void MainWindow::setModel(){
+//    table = new QTableView;
 
 }

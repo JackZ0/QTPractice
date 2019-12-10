@@ -6,6 +6,10 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QTableView>
+#include <QStandardItemModel>
+#include <QSqlTableModel>
+
 namespace Ui {
 class MainWindow;
 }
@@ -23,8 +27,10 @@ private:
     void connect_mysql();
     void close();
     void Mysqlquery(QString StrQuery);
+    void setModel();
+    void setView();
     QSqlDatabase db;
-
+//    QTableView *table;
 };
 
 #endif // MAINWINDOW_H
