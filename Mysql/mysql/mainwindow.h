@@ -10,6 +10,10 @@
 #include <QStandardItemModel>
 #include <QSqlTableModel>
 
+#include <QPaintEvent>
+#include <QPen>
+#include <QPainter>
+
 namespace Ui {
 class MainWindow;
 }
@@ -21,15 +25,26 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+protected:
 private:
     Ui::MainWindow *ui;
+    QSqlDatabase db;
     void connect_mysql();
-    void close();
+    QSqlQuery sqlquery;
     void Mysqlquery(QString StrQuery);
     void setModel();
-    void setView();
-    QSqlDatabase db;
+    void Insert();
+    bool Delete(QString str, QString tablename);
+    bool Update(QStringList qstrl1, QStringList qstrl2, int id, QString tablename);
+    bool Insert(QStringList qstrl1, QStringList qstrl2, QString tablename);
+    void paintEvent(QPaintEvent *);
+
+
+
+private slots:
+   void setView();
+   void close();
+
 //    QTableView *table;
 };
 

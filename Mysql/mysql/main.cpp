@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     w.show();
+    w.update();
     qDebug()<<"Avaliable drivers;";
         QStringList drivers = QSqlDatabase::drivers();
         foreach(QString driver,drivers)

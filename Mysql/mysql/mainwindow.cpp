@@ -8,12 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     connect_mysql();
     QString str1 = "SELECT equipment.ID,equipment.`name`,equipment.`port`,equipment.ip, equipment.`desc`FROM equipment";
-//    Mysqlquery(str1);
-
-
+    Mysqlquery(str1);
     ui->setupUi(this);
-    setView();
-    close();
+
+    connect(this->ui->queryButton,SIGNAL(clicked()),this,SLOT(setView()));
+    connect(this->ui->exitpushButton,SIGNAL(clicked()),this,SLOT(close()));
 }
 
 MainWindow::~MainWindow()
@@ -51,39 +50,64 @@ void MainWindow::Mysqlquery(QString StrQuery){
     query.exec(StrQuery);
     while(query.next()){
             qDebug()<<query.value(0).toInt()<<query.value(1).toString()<<query.value(2).toString();
-//            qDebug()<<query.result();
     }
-
 }
-
-//QSqlQueryModel *model = new QSqlQueryModel;
-//     model->setQuery("SELECT name, salary FROM employee");
-//     model->setHeaderData(0, Qt::Horizontal, tr("Name"));
-//     model->setHeaderData(1, Qt::Horizontal, tr("Salary"));
-
-//     QTableView *view = new QTableView;
-//     view->setModel(model);
-//     view->show();
 void MainWindow::setView(){
    QSqlQueryModel *model = new QSqlQueryModel;
-
     model->setQuery("select * from equipment",db);
-
-
     model->setHeaderData(0,Qt::Horizontal,tr("id"));
     model->setHeaderData(1,Qt::Horizontal,tr("name"));
     model->setHeaderData(2,Qt::Horizontal,tr("port"));
     model->setHeaderData(3,Qt::Horizontal,tr("ip"));
     model->setHeaderData(4,Qt::Horizontal,tr("desc"));
-
     qDebug()<< "1";
-     ui->tableView->setModel(model);
+    ui->tableView->setModel(model);
     qDebug()<< "2";
     ui->tableView->show();
+
     qDebug()<< "3";
 
 }
 void MainWindow::setModel(){
 //    table = new QTableView;
+}
+
+bool MainWindow::Delete(QString str, QString tablename){
+    sqlquery = QSqlQuery(db);
+    QString sq =QString("alter table %2 drop %1").arg(str),arg(tablename);
+    return sqlquery.exec(sq);
+}
+
+bool MainWindow::Update(QStringList qstrl1, QStringList qstrl2, int id, QString tablename){
+    QString sqlset;
+    sqlquery = QSqlQuery(db);
+    for(int i = 0; i < qstrl1.count(); i++)
+        sqlset+=""+qstrl1.at(i)+" ='"+qstrl2.at(i)+"',";
+    sqlset = sqlset.left(sqlset.length() - 1);
+    QString sq = QString("update %2 set " + sqlset + " where id=%1").arg(id).arg(tablename);
+    return sqlquery.exec(sq);
 
 }
+bool MainWindow::Insert(QStringList qstrl1, QStringList qstrl2, QString tablename){
+    sqlquery=QSqlQuery(db);
+        QString sqlset;
+        for(int i = 0; i < qstrl1.count(); i++)
+            sqlset += "" + qstrl1.at(i) + " ='" + qstrl2.at(i) + "',";
+        sqlset = sqlset.left(sqlset.length() - 1);
+        QString sq=QString("insert %1 set "+sqlset+" ").arg(tablename);
+        return sqlquery.exec(sq);
+}
+
+void MainWindow::paintEvent(QPaintEvent *){
+    QPainter p(this);
+    QPen pen;
+    pen.setWidth(10);
+
+    pen.setColor(QColor(255,56,0));
+    pen.setStyle(Qt::DashLine);
+    p.setPen(pen);
+    p.drawLine(50, 50, 200, 50);//直线
+    p.drawLine(50, 50, 50, 200);//竖线
+    p.end();
+}
+
