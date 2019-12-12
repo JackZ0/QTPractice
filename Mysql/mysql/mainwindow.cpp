@@ -103,11 +103,15 @@ void MainWindow::paintEvent(QPaintEvent *){
     QPen pen;
     pen.setWidth(10);
 
-    pen.setColor(QColor(255,56,0));
-    pen.setStyle(Qt::DashLine);
-    p.setPen(pen);
-    p.drawLine(50, 50, 200, 50);//直线
-    p.drawLine(50, 50, 50, 200);//竖线
-    p.end();
+//    pen.setColor(QColor(255,56,0));
+//    pen.setStyle(Qt::DashLine);
+//    p.setPen(pen);
+//    p.drawLine(50, 50, 200, 50);//直线
+//    p.drawLine(50, 50, 50, 200);//竖线
+//    p.end();
+
+    p.setPen(Qt::red);
+    QRectF rectangle2(200.0, 20.0, 80.0, 60.0);
+    p.drawRect(rectangle2);
 }
 
