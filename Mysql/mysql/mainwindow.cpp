@@ -109,9 +109,17 @@ void MainWindow::paintEvent(QPaintEvent *){
 //    p.drawLine(50, 50, 200, 50);//直线
 //    p.drawLine(50, 50, 50, 200);//竖线
 //    p.end();
+//画矩形
+//    p.setPen(Qt::red);
+//    QRectF rectangle2(200.0, 20.0, 80.0, 60.0);
+//    p.drawRect(rectangle2);
 
-    p.setPen(Qt::red);
-    QRectF rectangle2(200.0, 20.0, 80.0, 60.0);
-    p.drawRect(rectangle2);
+//画扇形
+    QRectF rectangle(10.0, 20.0, 100.0, 60.0);//设定扇形所在的矩形，扇形画在矩形内部
+    int startAngle = 30 * 16;//起始角度，角度可以为负值，如-30*16
+    int spanAngle = 120 * 16;//覆盖的角度，绘制方向为逆时针方向
+    p.drawPie(rectangle, startAngle, spanAngle);
+
+
 }
 
