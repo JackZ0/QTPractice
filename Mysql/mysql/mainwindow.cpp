@@ -103,16 +103,16 @@ void MainWindow::paintEvent(QPaintEvent *){
     QPen pen;
     pen.setWidth(10);
 
-//    pen.setColor(QColor(255,56,0));
-//    pen.setStyle(Qt::DashLine);
-//    p.setPen(pen);
-//    p.drawLine(50, 50, 200, 50);//直线
-//    p.drawLine(50, 50, 50, 200);//竖线
+    pen.setColor(QColor(255,56,0));
+    pen.setStyle(Qt::DashLine);
+    p.setPen(pen);
+    p.drawLine(50, 50, 200, 50);//直线
+    p.drawLine(50, 50, 50, 200);//竖线
 //    p.end();
 //画矩形
-//    p.setPen(Qt::red);
-//    QRectF rectangle2(200.0, 20.0, 80.0, 60.0);
-//    p.drawRect(rectangle2);
+    p.setPen(Qt::red);
+    QRectF rectangle2(200.0, 20.0, 80.0, 60.0);
+    p.drawRect(rectangle2);
 
 //画扇形
     QRectF rectangle(10.0, 20.0, 100.0, 60.0);//设定扇形所在的矩形，扇形画在矩形内部
@@ -120,6 +120,7 @@ void MainWindow::paintEvent(QPaintEvent *){
     int spanAngle = 120 * 16;//覆盖的角度，绘制方向为逆时针方向
     p.drawPie(rectangle, startAngle, spanAngle);
 
-
+    p.setPen(QPen(Qt::blue,4, Qt::SolidLine));
+    p.drawEllipse(20,20,160,160);
 }
 
