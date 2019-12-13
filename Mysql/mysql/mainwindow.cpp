@@ -111,7 +111,7 @@ void MainWindow::paintEvent(QPaintEvent *){
     p.drawLine(00, 90, 50, 200);//竖线
     p.drawLine(160, 400, 50, 200);//竖线
     p.drawPoint(400,90);
-    p.drawPoint(400,500);
+    p.drawPoint(400,200);
 
 //    p.end();
 //画矩形
