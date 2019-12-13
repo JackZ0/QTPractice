@@ -73,7 +73,7 @@ $(DESTDIR_TARGET): ui_mainwindow.h ui_operationdialog.h $(OBJECTS)
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -o Makefile.Debug mysql.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
+	@$(QMAKE) -o Makefile.Debug mysql.pro -spec win32-g++ "CONFIG+=qml_debug"
 
 qmake_all: FORCE
 
@@ -572,7 +572,13 @@ debug/main.o: main.cpp mainwindow.h \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtQml/qqmlpropertyvaluesource.h \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtQml/qqmllist.h \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/qmetaobject.h \
-		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtQml/qqmldebug.h
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtQml/qqmldebug.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtQml/QQmlApplicationEngine \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtQml/qqmlapplicationengine.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtQml/qqmlengine.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtQml/qjsengine.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtQml/qjsvalue.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtQml/qqmlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
 debug/mainwindow.o: mainwindow.cpp mainwindow.h \
