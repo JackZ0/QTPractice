@@ -47,7 +47,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tableView = new QTableView(centralWidget);
         tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(10, 50, 681, 201));
+        tableView->setGeometry(QRect(10, 30, 681, 201));
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(720, 40, 75, 23));
