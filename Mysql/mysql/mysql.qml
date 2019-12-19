@@ -37,7 +37,7 @@ Item {
         text:"change";
     }
     TextField {
-           id: textField1
+           id: username
            x: 137
            y: 35
            width: 200
@@ -69,7 +69,7 @@ Item {
 
 
         TextField {
-            id: textField2
+            id: password
             x: 137
             y: 85
             width: 200
@@ -79,7 +79,7 @@ Item {
         }
 
         Button {
-            id: button1
+            id: loginbutton
             x: 71
             y: 145
             width: 116
@@ -88,7 +88,7 @@ Item {
         }
 
         Button {
-            id: button2
+            id: canclebutton
             x: 224
             y: 145
             width: 110
@@ -98,3 +98,8 @@ Item {
 
 
 }
+
+/*##^## Designer {
+    D{i:0;autoSize:true;height:480;width:640}
+}
+ ##^##*/

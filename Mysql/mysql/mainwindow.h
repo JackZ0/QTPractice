@@ -9,6 +9,7 @@
 #include <QTableView>
 #include <QStandardItemModel>
 #include <QSqlTableModel>
+#include <QJsonObject>
 
 #include <QPaintEvent>
 #include <QPen>
