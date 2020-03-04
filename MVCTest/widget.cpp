@@ -281,7 +281,7 @@ void StuInfoManagementSystem::sltDelSchoolOrGradeAction()
 
 void StuInfoManagementSystem::sltAboutAction()
 {
-    QMessageBox::about(this, tr("About Aoftware"),tr("Make By Hero"));
+    QMessageBox::about(this, tr("About Aoftware"),tr("Make By WuhanInre"));
 }
 
 void StuInfoManagementSystem::SlotItemClicked(QTreeWidgetItem *item, int column)

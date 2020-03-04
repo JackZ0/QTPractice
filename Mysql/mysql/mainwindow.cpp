@@ -49,6 +49,8 @@ void MainWindow::Mysqlquery(QString StrQuery){
     QSqlQuery query(db);
     query.exec(StrQuery);
     while(query.next()){
+//            qDebug()<<query.
+
             qDebug()<<query.value(0).toInt()<<query.value(1).toString()<<query.value(2).toString();
     }
 }

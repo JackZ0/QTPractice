@@ -1,14 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-12-09T13:44:24
+# Project created by QtCreator 2020-02-26T18:50:23
 #
 #-------------------------------------------------
 
-QT       += core gui sql qml quick
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = mysql
+TARGET = showpology
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,31 +26,18 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    operationdialog.cpp \
-    user.cpp \
-    UserDB.cpp \
-    histCheck.cpp \
-    histCheckDB.cpp
+        MainWindow.cpp
 
 HEADERS += \
-        mainwindow.h \
-    operationdialog.h \
-    user.h \
-    UserDB.h \
-    histCheck.h \
-    histCheckDB.h
+        MainWindow.h
 
 FORMS += \
-        mainwindow.ui \
-    operationdialog.ui
+        MainWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-    mysql.qml
-
-
+RESOURCES += \
+    resource.qrc
