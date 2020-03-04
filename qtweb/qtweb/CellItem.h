@@ -16,10 +16,14 @@ class CellItem : public QGraphicsPixmapItem
 public:
     CellItem(int x, int y,enum CellStatus status = INITIAL,
              QGraphicsItem *parent = Q_NULLPTR );
-    QPixmap * _initial;
-    QPixmap * _flag;
-    QPixmap * _question;
-    QPixmap * _blank;
+    ~CellItem();
+    static QPixmap * _initial;
+    static QPixmap * _flag;
+    static QPixmap * _question;
+    static QPixmap * _blank;
+    static QPixmap * _explode;
+    static QPixmap * _digits[9];
+
     static int _refCount;
 protected:
     int _cx;

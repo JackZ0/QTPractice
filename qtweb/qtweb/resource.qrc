@@ -8,11 +8,11 @@
         <file>image/6.jpg</file>
         <file>image/7.jpg</file>
         <file>image/8.jpg</file>
-        <file>image/bomb.jpg</file>
-        <file>image/bomb0.jpg</file>
-        <file>image/flag.jpg</file>
-        <file>image/flag2.jpg</file>
-        <file>image/s.jpg</file>
         <file>image/blank.jpg</file>
+        <file>image/bomb.jpg</file>
+        <file>image/explode.jpg</file>
+        <file>image/flag.jpg</file>
+        <file>image/initial.jpg</file>
+        <file>image/question.jpg</file>
     </qresource>
 </RCC>

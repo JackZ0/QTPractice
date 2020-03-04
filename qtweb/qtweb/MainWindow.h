@@ -35,7 +35,7 @@ private slots:
 
 private:
 
-    QGraphicsScene *scene;
+//    QGraphicsScene *scene;
     QGraphicsView *_view;
     Ui::MainWindow *ui;
     MineSweepScene *_scene;

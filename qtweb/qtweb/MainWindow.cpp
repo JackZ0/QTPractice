@@ -12,9 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-//    QGraphicsScene *scenetemp = new QGraphicsScene;
-//    DrawRect(100,100,"first",scenetemp);
-//    DrawRect(200,100,"first",scene);
+
     FieldData::getInstance();
 
     _view = new QGraphicsView;
