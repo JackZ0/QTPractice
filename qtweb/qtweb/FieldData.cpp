@@ -92,8 +92,8 @@ void FieldData::updateSurroundding(int x, int y)
 
 void FieldData::dump()
 {
-    for(int x =0; x < _width; x++){
-        for(int y =0; y < _height; y++){
+    for(int y =0; y < _height; y++){
+        for(int x =0; x < _width; x++){
             cout << _cells[x][y] <<'\t';
         }
         cout << endl;

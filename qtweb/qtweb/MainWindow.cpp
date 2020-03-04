@@ -5,7 +5,7 @@
 #include <QMessageBox>
 #include "ConfigDialog.h"
 #include "FieldData.h"
-
+#include "MineSweepScene.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,7 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
 //    DrawRect(100,100,"first",scenetemp);
 //    DrawRect(200,100,"first",scene);
     FieldData::getInstance();
-//    ui->graphicsView->setScene(scenetemp);
+
+    _view = new QGraphicsView;
+    this->setCentralWidget(_view);
+
+    _scene = new MineSweepScene;
+    _view->setScene(_scene);
+    //ui->graphicsView->setScene(scenetemp);
 //    ui->graphicsView->show();
 }
 

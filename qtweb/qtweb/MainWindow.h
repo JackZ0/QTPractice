@@ -9,6 +9,7 @@
 #include <QGraphicsView>
 #include <QPixmap>
 #include <QGraphicsScene>
+#include "MineSweepScene.h"
 namespace Ui {
 class MainWindow;
 }
@@ -35,7 +36,9 @@ private slots:
 private:
 
     QGraphicsScene *scene;
+    QGraphicsView *_view;
     Ui::MainWindow *ui;
+    MineSweepScene *_scene;
 
     void DrawRect(int posx,int posy,QString lable,QGraphicsScene *scenePare);
 

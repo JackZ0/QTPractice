@@ -29,12 +29,16 @@ SOURCES += \
         main.cpp \
         MainWindow.cpp \
     ConfigDialog.cpp \
-    FieldData.cpp
+    FieldData.cpp \
+    CellItem.cpp \
+    MineSweepScene.cpp
 
 HEADERS += \
         MainWindow.h \
     ConfigDialog.h \
-    FieldData.h
+    FieldData.h \
+    CellItem.h \
+    MineSweepScene.h
 
 FORMS += \
         MainWindow.ui \
