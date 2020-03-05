@@ -19,28 +19,25 @@ CellItem::CellItem(int x, int y, CellStatus status, QGraphicsItem *parent)
     _refCount++; // 在加载第一个CellItem 的时候创建所有图片
 
     if(_refCount == 1){
-        _initial = new QPixmap(":/image/initial.jpg");
-        _flag = new QPixmap(":/image/flag.jpg");
-        _question = new QPixmap(":/image/question.jpg");
-        _blank = new QPixmap(":/image/blank.jpg");
-        _explode = new QPixmap(":/image/explode.jpg");
+        _initial = new QPixmap(":/image/initial.png");
+        _flag = new QPixmap(":/image/flag.png");
+        _question = new QPixmap(":/image/question.png");
+        _blank = new QPixmap(":/image/blank.png");
+        _explode = new QPixmap(":/image/explode.png");
 
         QString prefix = ":/image/";
         QString num;
-        QString postfix = ".jpg";
+        QString postfix = ".png";
 
         QString filename;
         for (int i = 1; i < 9; i++){
             filename += prefix;
             filename += num.setNum(i);
             filename += postfix;
-
-
             _digits[i] = new QPixmap(filename);
         }
 
     }
-
     setPixmap(*_initial);
 
 }

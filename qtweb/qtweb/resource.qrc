@@ -14,5 +14,19 @@
         <file>image/flag.jpg</file>
         <file>image/initial.jpg</file>
         <file>image/question.jpg</file>
+        <file>image/1.png</file>
+        <file>image/2.png</file>
+        <file>image/3.png</file>
+        <file>image/4.png</file>
+        <file>image/5.png</file>
+        <file>image/6.png</file>
+        <file>image/7.png</file>
+        <file>image/8.png</file>
+        <file>image/blank.png</file>
+        <file>image/bomb.png</file>
+        <file>image/explode.png</file>
+        <file>image/flag.png</file>
+        <file>image/initial.png</file>
+        <file>image/question.png</file>
     </qresource>
 </RCC>
