@@ -5,11 +5,10 @@
 #include <QDebug>
 using namespace std;
 
-
 FieldData *FieldData::_ins = nullptr;
 FieldData::FieldData():
     _width(10),
-    _height(8),
+    _height(10),
     _mines(8)
 {
     reset();
@@ -19,7 +18,7 @@ FieldData::FieldData():
 FieldData *FieldData::getInstance()
 {
     if(_ins == nullptr){
-        _ins = new FieldData;
+        _ins = new FieldData();
     }
     return _ins;
 }

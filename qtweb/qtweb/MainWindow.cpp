@@ -20,8 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     _scene = new MineSweepScene;
     _view->setScene(_scene);
-    //ui->graphicsView->setScene(scenetemp);
-//    ui->graphicsView->show();
+
 }
 
 MainWindow::~MainWindow()

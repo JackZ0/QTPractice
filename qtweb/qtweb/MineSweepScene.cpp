@@ -17,6 +17,7 @@ void MineSweepScene::initItems()
 {
     int w = Field->getWidth();
     int h = Field->getHeight();
+    qDebug()<<"||" <<w << h <<endl;
 
     for(int x = 0; x < w; x++){
         _items.push_back(ItemColumn());
@@ -26,7 +27,6 @@ void MineSweepScene::initItems()
             static int ch = _items[0][0]->boundingRect().height();
 
             _items[x][y]->setPos(x*cw,y*ch);
-            qDebug()<<"||" <<x*cw << y*ch <<endl;
             addItem(_items[x][y]);
         }
     }
