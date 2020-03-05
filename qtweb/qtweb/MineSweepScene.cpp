@@ -1,6 +1,6 @@
 #include "MineSweepScene.h"
 #include "FieldData.h"
-
+#include <QDebug>
 MineSweepScene::MineSweepScene(QObject *parent):
     QGraphicsScene(parent)
 
@@ -26,6 +26,7 @@ void MineSweepScene::initItems()
             static int ch = _items[0][0]->boundingRect().height();
 
             _items[x][y]->setPos(x*cw,y*ch);
+            qDebug()<<"||" <<x*cw << y*ch <<endl;
             addItem(_items[x][y]);
         }
     }

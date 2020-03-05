@@ -36,7 +36,6 @@ CellItem::CellItem(int x, int y, CellStatus status, QGraphicsItem *parent)
             filename += postfix;
             _digits[i] = new QPixmap(filename);
         }
-
     }
     setPixmap(*_initial);
 
