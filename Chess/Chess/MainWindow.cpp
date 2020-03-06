@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    _button = new QPushButton("this is button",this);
+//    _button->show();
 }
 
 MainWindow::~MainWindow()

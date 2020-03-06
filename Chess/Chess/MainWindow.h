@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPainter>
+#include <QPushButton>
 namespace Ui {
 class MainWindow;
 }
@@ -17,7 +18,11 @@ public:
     virtual void paintEvent(QPaintEvent *);
 
     virtual void mousePressEvent(QMouseEvent *ev);
+
+    QPushButton* _button;
+
     QPoint _ptClick;
+
 
 private:
     Ui::MainWindow *ui;
