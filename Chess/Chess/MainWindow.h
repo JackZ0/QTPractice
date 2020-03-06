@@ -14,7 +14,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void paintEvent(QPaintEvent *);
+    virtual void paintEvent(QPaintEvent *);
+
+    virtual void mousePressEvent(QMouseEvent *ev);
+    QPoint _ptClick;
 
 private:
     Ui::MainWindow *ui;
