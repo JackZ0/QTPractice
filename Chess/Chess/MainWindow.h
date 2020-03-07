@@ -20,17 +20,23 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     virtual void paintEvent(QPaintEvent *);
+    void mousePressEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
 
 //    virtual void mousePressEvent(QMouseEvent *ev);
+
+
+    void drawStone(QPainter & painter,int id);
+    QPoint center(int row,int col);
+    QPoint center(int id);
+    bool getRowCol(QPoint pt, int &row, int &col);
+
     Stone _s[32];
     int _r=20; //棋子半径
     QPushButton* _button;
 
     QPoint _ptClick;
-
-    void drawStone(QPainter & painter,int id);
-    QPoint center(int row,int col);
-    QPoint center(int id);
+    int _selectid=-1;
 
 
 private:

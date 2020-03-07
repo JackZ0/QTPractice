@@ -2,7 +2,7 @@
 #include "ui_MainWindow.h"
 
 #include <QMouseEvent>
-
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -62,30 +62,91 @@ void MainWindow::paintEvent(QPaintEvent *)
 //    painter.setPen(QColor(255,0,255));
 //    painter.setBrush(QBrush(QColor(255,255,0)));
 
-//    painter.drawEllipse(_ptClick,30,30);
+    //    painter.drawEllipse(_ptClick,30,30);
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *)
+{
+
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
+{
+    QPoint pt = ev->pos();
+
+    int row,col;
+    bool bRet = getRowCol(pt,row,col);
+    qDebug() << "row << col" << row << col << endl;
+    if(bRet == false){
+        return ;
+    }
+
+    int i ;
+    int clickid = -1;
+    for (i = 0; i < 32; i++){
+        if(_s[i]._row == row && _s[i]._col == col && _s[i]._dead == false){
+            break;
+        }
+    }
+    if(i < 32){
+        clickid = i;
+    }
+
+    if(_selectid == -1){
+        if(clickid != -1){
+            _selectid = clickid;
+            update();
+        }
+    }
+    else
+    {
+        _s[_selectid]._row = row;
+        _s[_selectid]._col = col;
+        if(clickid != -1){
+            _s[clickid]._dead = true;
+        }
+        update();
+    }
+
+
+    //pt 转换成象棋的行列值
+    // 判断这个行列中有没有象棋子
+
+
 }
 
 //void MainWindow::mousePressEvent(QMouseEvent *ev)
 //{
 //    // 得到鼠标点击的地方
-////    _ptClick = ev->pos();
+//    _ptClick = ev->pos();
 
 //    //强制程序进行重绘
-////    update();
+//    update();
 
 //}
 
 void MainWindow::drawStone(QPainter & painter,int id)
 {
+    if(_s[id]._dead)
+        return ;
     QPoint c = center(id);
-    QRect rect = QRect(c.x()-_r,c.y()-_r,_r*2,_r*2);
-    painter.setBrush(QBrush(QColor(255,255,0)));
+    QRect rect = QRect(c.x()-_r,c.y()-_r,_r*2,_r*2);;
+    qDebug() <<"-----------"<< id << endl;
+    if(id == _selectid){
+        painter.setBrush(QBrush(Qt::gray));
+    }
+    else{
+        painter.setBrush(QBrush(Qt::yellow));
+    }
+    painter.setPen(Qt::black);
+    painter.drawEllipse(center(id),_r,_r);
+
     if(_s[id]._red){
         painter.setPen(Qt::red);
-    }else{
-        painter.setPen(Qt::black);
     }
-    painter.drawEllipse(center(_s[id]._row,_s[id]._col),_r,_r);
+
+//    painter.setFont(QFont("system",_r,70));
+
     painter.drawText(rect,_s[id].getText(),QTextOption(Qt::AlignCenter));
 }
 
@@ -101,4 +162,21 @@ QPoint MainWindow::center(int row, int col)
 QPoint MainWindow::center(int id)
 {
     return  center(_s[id]._row, _s[id]._col);
+}
+
+
+bool MainWindow::getRowCol(QPoint pt, int &row, int &col)
+{
+    for(row =0; row <=9 ; row++){
+        for(col = 0; col <= 8; col++){
+            QPoint c = center(row,col);
+            int dx = c.x() - pt.x();
+            int dy = c.y() - pt.y();
+            int dist = dx*dx + dy*dy;
+            if(dist < _r*_r){
+                return true;
+            }
+        }
+    }
+    return false;
 }
