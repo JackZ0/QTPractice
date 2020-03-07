@@ -69,7 +69,10 @@ void MainWindow::mousePressEvent(QMouseEvent *)
 {
 
 }
-
+/**
+ * @brief MainWindow::mouseReleaseEvent 鼠标事件获取位置
+ * @param ev
+ */
 void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
 {
     QPoint pt = ev->pos();
@@ -100,18 +103,17 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
     }
     else
     {
-        _s[_selectid]._row = row;
-        _s[_selectid]._col = col;
-        if(clickid != -1){
-            _s[clickid]._dead = true;
+        if(canMove(_selectid,row,col,clickid)){
+           //走棋
+            _s[_selectid]._row = row;
+            _s[_selectid]._col = col;
+            if(clickid != -1){
+                _s[clickid]._dead = true;
+            }
+            update();
         }
-        update();
+
     }
-
-
-    //pt 转换成象棋的行列值
-    // 判断这个行列中有没有象棋子
-
 
 }
 
@@ -179,4 +181,25 @@ bool MainWindow::getRowCol(QPoint pt, int &row, int &col)
         }
     }
     return false;
+}
+
+/**
+ * @brief MainWindow::canMove 判断是否可以移动
+ * @param moveid
+ * @param row
+ * @param col
+ * @param killid
+ * @return
+ */
+bool MainWindow::canMove(int moveid, int row, int col, int killid)
+{
+    //颜色相同的点不能移动
+    if(_s[moveid]._red == _s[killid]._red )
+    {
+        _selectid = killid;
+        update();
+        return false;
+    }
+    return true;
+
 }

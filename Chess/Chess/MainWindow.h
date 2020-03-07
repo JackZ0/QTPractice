@@ -30,6 +30,7 @@ public:
     QPoint center(int row,int col);
     QPoint center(int id);
     bool getRowCol(QPoint pt, int &row, int &col);
+    bool canMove(int moveid, int row, int col, int killid);
 
     Stone _s[32];
     int _r=20; //棋子半径
