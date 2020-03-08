@@ -31,13 +31,22 @@ public:
     QPoint center(int id);
     bool getRowCol(QPoint pt, int &row, int &col);
     bool canMove(int moveid, int row, int col, int killid);
+    bool canMove1(int moveid, int row, int col, int killid);
+    bool canMove2(int moveid, int row, int col, int killid);
+    bool canMove3(int moveid, int row, int col, int killid);
+    bool canMove4(int moveid, int row, int col, int killid);
+    bool canMove5(int moveid, int row, int col, int killid);
+    bool canMove6(int moveid, int row, int col, int killid);
+    bool canMove7(int moveid, int row, int col, int killid);
+
 
     Stone _s[32];
     int _r=20; //棋子半径
     QPushButton* _button;
 
     QPoint _ptClick;
-    int _selectid=-1;
+    int _selectid;
+    bool _bRetTurn;
 
 
 private:

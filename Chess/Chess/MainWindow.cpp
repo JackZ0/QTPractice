@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         _s[i].init(i);
     }
+    _selectid = -1;
+    _bRetTurn = -1;
 //    _button = new QPushButton("this is button",this);
 
 //    _button->show();
@@ -97,8 +99,11 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
 
     if(_selectid == -1){
         if(clickid != -1){
-            _selectid = clickid;
-            update();
+            if(_bRetTurn == _s[clickid]._red){
+                _selectid = clickid;
+                update();
+            }
+
         }
     }
     else
@@ -110,6 +115,8 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
             if(clickid != -1){
                 _s[clickid]._dead = true;
             }
+            _selectid = -1;
+            _bRetTurn = !_bRetTurn;
             update();
         }
 
@@ -200,6 +207,115 @@ bool MainWindow::canMove(int moveid, int row, int col, int killid)
         update();
         return false;
     }
+
+    switch (_s[moveid]._type) {
+        case Stone::JIANG:
+        return canMove1(moveid,row,col,killid);
+        break;
+        case Stone::SHI:
+        return canMove2(moveid,row,col,killid);
+        break;
+        case Stone::XIANG:
+        return canMove3(moveid,row,col,killid);
+        break;
+        case Stone::JU:
+        return canMove4(moveid,row,col,killid);
+        break;
+        case Stone::MA:
+        return canMove5(moveid,row,col,killid);
+        break;
+        case Stone::PAO:
+        return canMove6(moveid,row,col,killid);
+        break;
+        case Stone::BING:
+        return canMove7(moveid,row,col,killid);
+        break;
+
+    }
     return true;
 
+}
+/**
+ * @brief MainWindow::canMove1  规则1将的规则  在米字格里面 只能步长1个格子
+ * @param moveid
+ * @param row
+ * @param col
+ * @param killid
+ * @return
+ */
+bool MainWindow::canMove1(int moveid, int row, int col, int killid)
+{
+    if(_s[moveid]._red)
+    {
+        if(row >2) return false;
+    }
+    else{
+        if(row <7)  return false;
+    }
+    if(col <3)
+        return false;
+    if(col > 5)
+        return false;
+
+    int dr = _s[moveid]._row -row;
+    int dc = _s[moveid]._col -col;
+    int d = abs(dr)*10 + abs(dc);
+    if(d == 1 || d == 10)
+        return true;
+    return false;
+}
+
+/**
+ * @brief MainWindow::canMove2  士規則
+ * @param moveid
+ * @param row
+ * @param col
+ * @param killid
+ * @return
+ */
+bool MainWindow::canMove2(int moveid, int row, int col, int killid)
+{
+    if(_s[moveid]._red)
+    {
+        if(row >2) return false;
+    }
+    else{
+        if(row <7)  return false;
+    }
+    if(col <3)
+        return false;
+    if(col > 5)
+        return false;
+
+    int dr = _s[moveid]._row -row;
+    int dc = _s[moveid]._col -col;
+    int d = abs(dr)*10 + abs(dc);
+    if( d == 11)
+        return true;
+    return false;
+}
+
+bool MainWindow::canMove3(int moveid, int row, int col, int killid)
+{
+    return true;
+}
+
+bool MainWindow::canMove4(int moveid, int row, int col, int killid)
+{
+    return true;
+}
+
+bool MainWindow::canMove5(int moveid, int row, int col, int killid)
+{
+    return true;
+}
+
+bool MainWindow::canMove6(int moveid, int row, int col, int killid)
+{
+    return true;
+}
+
+bool MainWindow::canMove7(int moveid, int row, int col, int killid)
+{
+    return true;
 }
