@@ -36,8 +36,8 @@ public:
     bool canMoveXiang(int moveid, int row, int col, int killid);
     bool canMoveJu(int moveid, int row, int col, int killid);
     bool canMoveMa(int moveid, int row, int col, int killid);
-    bool canMove6(int moveid, int row, int col, int killid);
-    bool canMove7(int moveid, int row, int col, int killid);
+    bool canMovePao(int moveid, int row, int col, int killid);
+    bool canMoveBing(int moveid, int row, int col, int killid);
 
     int relation(int row1,int col1,int row, int col);
 

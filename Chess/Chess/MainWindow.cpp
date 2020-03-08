@@ -224,9 +224,9 @@ bool MainWindow::canMove(int moveid, int row, int col, int killid)
         case Stone::MA:
         return canMoveMa(moveid,row,col,killid);
         case Stone::PAO:
-        return canMove6(moveid,row,col,killid);
+        return canMovePao(moveid,row,col,killid);
         case Stone::BING:
-        return canMove7(moveid,row,col,killid);
+        return canMoveBing(moveid,row,col,killid);
 
     }
     }
@@ -331,17 +331,65 @@ bool MainWindow::canMoveJu(int moveid, int row, int col, int killid)
 
 bool MainWindow::canMoveMa(int moveid, int row, int col, int killid)
 {
-    return true;
+    int dy = abs(_s[moveid]._row - row);
+    int dx = abs(_s[moveid]._col - col);
+    if((dx==1 && dy==2) || (dx==2 && dy==1)){
+        int r, c;
+        if(dx==2){
+            r = _s[moveid]._row;
+            c = (_s[moveid]._col + col)/2;
+        }
+        else {
+            r = (_s[moveid]._row + row)/2;
+            c = _s[moveid]._col;
+        }
+        if(hasStone(r,c)) return false;
+        return true;
+    }
+
+    return false;
 }
 
-bool MainWindow::canMove6(int moveid, int row, int col, int killid)
+bool MainWindow::canMovePao(int moveid, int row, int col, int killid)
 {
-    return true;
+    if(killid == -1){
+       return canMoveJu(moveid,row,col,killid);
+    }else{
+       if(_s[moveid]._row == row){
+           if(hasStone(_s[moveid]._col, col,true,row,col)==1) return true;
+           return false;
+       }
+       else if(_s[moveid]._col == col){
+
+           if(hasStone(_s[moveid]._row, row,false,row,col)==1) return true;
+           return false;
+       }
+       else {
+           return false;
+       }
+    }
 }
 
-bool MainWindow::canMove7(int moveid, int row, int col, int killid)
+bool MainWindow::canMoveBing(int moveid, int row, int col, int killid)
 {
-    return true;
+    if(_s[moveid]._red){
+        if(row<_s[moveid]._row) return false;
+        if(_s[moveid]._row == 3 || _s[moveid]._row == 4){
+            if(_s[moveid]._col != col) return false;
+        }
+    }else{
+        if(row>_s[moveid]._row) return false;
+        if(_s[moveid]._row == 5 || _s[moveid]._row == 6){
+            if(_s[moveid]._col != col) return false;
+        }
+    }
+
+    int dy = abs(_s[moveid]._row - row);
+    int dx = abs(_s[moveid]._col - col);
+    if(dx+dy == 1) return true;
+
+    return false;
+
 }
 
 int MainWindow::relation(int row1, int col1, int row, int col)
