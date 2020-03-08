@@ -3,6 +3,8 @@
 
 #include <QMouseEvent>
 #include <QDebug>
+#include <algorithm>
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,8 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         _s[i].init(i);
     }
+    _r = 20;
     _selectid = -1;
-    _bRetTurn = -1;
+    _bRetTurn = true;
 //    _button = new QPushButton("this is button",this);
 
 //    _button->show();
@@ -86,16 +89,14 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
         return ;
     }
 
-    int i ;
     int clickid = -1;
-    for (i = 0; i < 32; i++){
+    for (int i = 0; i < 32; i++){
         if(_s[i]._row == row && _s[i]._col == col && _s[i]._dead == false){
+            clickid = i;
             break;
         }
     }
-    if(i < 32){
-        clickid = i;
-    }
+
 
     if(_selectid == -1){
         if(clickid != -1){
@@ -121,7 +122,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
         }
 
     }
-
 }
 
 //void MainWindow::mousePressEvent(QMouseEvent *ev)
@@ -140,7 +140,7 @@ void MainWindow::drawStone(QPainter & painter,int id)
         return ;
     QPoint c = center(id);
     QRect rect = QRect(c.x()-_r,c.y()-_r,_r*2,_r*2);;
-    qDebug() <<"-----------"<< id << endl;
+//    qDebug() <<"-----------"<< id << endl;
     if(id == _selectid){
         painter.setBrush(QBrush(Qt::gray));
     }
@@ -200,6 +200,10 @@ bool MainWindow::getRowCol(QPoint pt, int &row, int &col)
  */
 bool MainWindow::canMove(int moveid, int row, int col, int killid)
 {
+    if(killid == -1){}
+    else{
+
+
     //颜色相同的点不能移动
     if(_s[moveid]._red == _s[killid]._red )
     {
@@ -210,27 +214,21 @@ bool MainWindow::canMove(int moveid, int row, int col, int killid)
 
     switch (_s[moveid]._type) {
         case Stone::JIANG:
-        return canMove1(moveid,row,col,killid);
-        break;
+        return canMoveJiang(moveid,row,col,killid);
         case Stone::SHI:
-        return canMove2(moveid,row,col,killid);
-        break;
+        return canMoveShi(moveid,row,col,killid);
         case Stone::XIANG:
-        return canMove3(moveid,row,col,killid);
-        break;
+        return canMoveXiang(moveid,row,col,killid);
         case Stone::JU:
-        return canMove4(moveid,row,col,killid);
-        break;
+        return canMoveJu(moveid,row,col,killid);
         case Stone::MA:
-        return canMove5(moveid,row,col,killid);
-        break;
+        return canMoveMa(moveid,row,col,killid);
         case Stone::PAO:
         return canMove6(moveid,row,col,killid);
-        break;
         case Stone::BING:
         return canMove7(moveid,row,col,killid);
-        break;
 
+    }
     }
     return true;
 
@@ -243,7 +241,7 @@ bool MainWindow::canMove(int moveid, int row, int col, int killid)
  * @param killid
  * @return
  */
-bool MainWindow::canMove1(int moveid, int row, int col, int killid)
+bool MainWindow::canMoveJiang(int moveid, int row, int col, int killid)
 {
     if(_s[moveid]._red)
     {
@@ -259,8 +257,8 @@ bool MainWindow::canMove1(int moveid, int row, int col, int killid)
 
     int dr = _s[moveid]._row -row;
     int dc = _s[moveid]._col -col;
-    int d = abs(dr)*10 + abs(dc);
-    if(d == 1 || d == 10)
+
+    if(dr + dc  == 1)
         return true;
     return false;
 }
@@ -273,7 +271,7 @@ bool MainWindow::canMove1(int moveid, int row, int col, int killid)
  * @param killid
  * @return
  */
-bool MainWindow::canMove2(int moveid, int row, int col, int killid)
+bool MainWindow::canMoveShi(int moveid, int row, int col, int killid)
 {
     if(_s[moveid]._red)
     {
@@ -282,30 +280,56 @@ bool MainWindow::canMove2(int moveid, int row, int col, int killid)
     else{
         if(row <7)  return false;
     }
-    if(col <3)
-        return false;
-    if(col > 5)
+    if(col <3 || col > 5)
         return false;
 
     int dr = _s[moveid]._row -row;
     int dc = _s[moveid]._col -col;
-    int d = abs(dr)*10 + abs(dc);
-    if( d == 11)
+//    int d = abs(dr)*10 + abs(dc);
+    if( dr == 1 && dc == 1)
         return true;
     return false;
 }
 
-bool MainWindow::canMove3(int moveid, int row, int col, int killid)
+bool MainWindow::canMoveXiang(int moveid, int row, int col, int killid)
 {
+   if(_s[moveid]._red){
+    if(row > 4)
+       return false;
+   }
+   else
+   {
+       if(row < 5)
+           return false;
+   }
+  int dy = abs(_s[moveid]._row - row);
+  int dx = abs(_s[moveid]._col - col);
+  if(dx == 2 && dy == 2){
+      int r = (_s[moveid]._row + row)/2;
+      int c = (_s[moveid]._col + col)/2;
+      if(hasStone(r,c)) return false;
+      return true;
+      }
+
     return true;
 }
 
-bool MainWindow::canMove4(int moveid, int row, int col, int killid)
+bool MainWindow::canMoveJu(int moveid, int row, int col, int killid)
 {
-    return true;
+    if(_s[moveid]._row == row){
+           if(hasStone(_s[moveid]._col,col,true,row,col)) return false;
+           return true;
+       }
+       else if(_s[moveid]._col == col){
+           if(hasStone(_s[moveid]._row,row,false,row,col)) return false;
+           return true;
+       }
+       else {
+           return false;
+       }
 }
 
-bool MainWindow::canMove5(int moveid, int row, int col, int killid)
+bool MainWindow::canMoveMa(int moveid, int row, int col, int killid)
 {
     return true;
 }
@@ -318,4 +342,35 @@ bool MainWindow::canMove6(int moveid, int row, int col, int killid)
 bool MainWindow::canMove7(int moveid, int row, int col, int killid)
 {
     return true;
+}
+
+int MainWindow::relation(int row1, int col1, int row, int col)
+{
+    return qAbs(row1-row)*10+qAbs(col1-col);
+}
+
+
+
+bool MainWindow::hasStone(int row, int col)
+{
+    for(int i=0;i<32;i++)
+            if(_s[i]._dead==false && _s[i]._row == row && _s[i]._col == col)
+                return true;
+        return false;
+}
+
+int MainWindow::hasStone(int a, int b, bool bRow, int row, int col)
+{
+    int t = 0;
+        int mn = min(a,b);
+        int mx = max(a,b);
+        for(int i=mn+1;i<mx;i++){
+            if(bRow){
+                if(hasStone(row,i)) t++;
+            }
+            else{
+                if(hasStone(i,col)) t++;
+            }
+        }
+        return t;
 }

@@ -31,13 +31,12 @@ public:
         case BING:
             return "兵";
         }
-        return "错误";
     }
 
     void init(int id){
         struct {
             int row,col;
-            Stone::TYPE type;
+            TYPE type;
         }pos[16]={
         {0,0,Stone::JU},
         {0,1,Stone::MA},
@@ -60,6 +59,7 @@ public:
         _id = id;
         _dead = false;
         _red = id < 16;
+
         if(id < 16){
             _row = pos[id].row;
             _col = pos[id].col;
