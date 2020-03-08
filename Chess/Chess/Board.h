@@ -12,13 +12,13 @@ namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class Board : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit Board(QWidget *parent = nullptr);
+    ~Board();
     virtual void paintEvent(QPaintEvent *);
     void mousePressEvent(QMouseEvent *);
     void mouseReleaseEvent(QMouseEvent *);
@@ -34,10 +34,10 @@ public:
     bool canMoveJiang(int moveid, int row, int col, int killid);
     bool canMoveShi(int moveid, int row, int col, int killid);
     bool canMoveXiang(int moveid, int row, int col, int killid);
-    bool canMoveJu(int moveid, int row, int col, int killid);
+    bool canMoveJu(int moveid, int row, int col, int );
     bool canMoveMa(int moveid, int row, int col, int killid);
     bool canMovePao(int moveid, int row, int col, int killid);
-    bool canMoveBing(int moveid, int row, int col, int killid);
+    bool canMoveBing(int moveid, int row, int col, int );
 
     int relation(int row1,int col1,int row, int col);
 

@@ -1,4 +1,4 @@
-#include "MainWindow.h"
+#include "Board.h"
 #include "ui_MainWindow.h"
 
 #include <QMouseEvent>
@@ -6,7 +6,7 @@
 #include <algorithm>
 using namespace std;
 
-MainWindow::MainWindow(QWidget *parent) :
+Board::Board(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -23,12 +23,12 @@ MainWindow::MainWindow(QWidget *parent) :
 //    _button->show();
 }
 
-MainWindow::~MainWindow()
+Board::~Board()
 {
     delete ui;
 }
 
-void MainWindow::paintEvent(QPaintEvent *)
+void Board::paintEvent(QPaintEvent *)
 {
     //绘制类
     // 绘制打印机、绘图、考屏幕
@@ -70,7 +70,7 @@ void MainWindow::paintEvent(QPaintEvent *)
     //    painter.drawEllipse(_ptClick,30,30);
 }
 
-void MainWindow::mousePressEvent(QMouseEvent *)
+void Board::mousePressEvent(QMouseEvent *)
 {
 
 }
@@ -78,7 +78,7 @@ void MainWindow::mousePressEvent(QMouseEvent *)
  * @brief MainWindow::mouseReleaseEvent 鼠标事件获取位置
  * @param ev
  */
-void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
+void Board::mouseReleaseEvent(QMouseEvent *ev)
 {
     QPoint pt = ev->pos();
 
@@ -134,7 +134,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
 
 //}
 
-void MainWindow::drawStone(QPainter & painter,int id)
+void Board::drawStone(QPainter & painter,int id)
 {
     if(_s[id]._dead)
         return ;
@@ -159,7 +159,7 @@ void MainWindow::drawStone(QPainter & painter,int id)
     painter.drawText(rect,_s[id].getText(),QTextOption(Qt::AlignCenter));
 }
 
-QPoint MainWindow::center(int row, int col)
+QPoint Board::center(int row, int col)
 {
     QPoint ret;
     ret.rx() = (col+1)* _r*2;
@@ -168,13 +168,13 @@ QPoint MainWindow::center(int row, int col)
 
 }
 
-QPoint MainWindow::center(int id)
+QPoint Board::center(int id)
 {
     return  center(_s[id]._row, _s[id]._col);
 }
 
 
-bool MainWindow::getRowCol(QPoint pt, int &row, int &col)
+bool Board::getRowCol(QPoint pt, int &row, int &col)
 {
     for(row =0; row <=9 ; row++){
         for(col = 0; col <= 8; col++){
@@ -198,7 +198,7 @@ bool MainWindow::getRowCol(QPoint pt, int &row, int &col)
  * @param killid
  * @return
  */
-bool MainWindow::canMove(int moveid, int row, int col, int killid)
+bool Board::canMove(int moveid, int row, int col, int killid)
 {
     if(killid == -1){}
     else{
@@ -241,7 +241,7 @@ bool MainWindow::canMove(int moveid, int row, int col, int killid)
  * @param killid
  * @return
  */
-bool MainWindow::canMoveJiang(int moveid, int row, int col, int killid)
+bool Board::canMoveJiang(int moveid, int row, int col, int killid)
 {
     if(_s[moveid]._red)
     {
@@ -271,7 +271,7 @@ bool MainWindow::canMoveJiang(int moveid, int row, int col, int killid)
  * @param killid
  * @return
  */
-bool MainWindow::canMoveShi(int moveid, int row, int col, int killid)
+bool Board::canMoveShi(int moveid, int row, int col, int killid)
 {
     if(_s[moveid]._red)
     {
@@ -291,7 +291,7 @@ bool MainWindow::canMoveShi(int moveid, int row, int col, int killid)
     return false;
 }
 
-bool MainWindow::canMoveXiang(int moveid, int row, int col, int killid)
+bool Board::canMoveXiang(int moveid, int row, int col, int killid)
 {
    if(_s[moveid]._red){
     if(row > 4)
@@ -314,7 +314,7 @@ bool MainWindow::canMoveXiang(int moveid, int row, int col, int killid)
     return true;
 }
 
-bool MainWindow::canMoveJu(int moveid, int row, int col, int killid)
+bool Board::canMoveJu(int moveid, int row, int col, int)
 {
     if(_s[moveid]._row == row){
            if(hasStone(_s[moveid]._col,col,true,row,col)) return false;
@@ -329,7 +329,7 @@ bool MainWindow::canMoveJu(int moveid, int row, int col, int killid)
        }
 }
 
-bool MainWindow::canMoveMa(int moveid, int row, int col, int killid)
+bool Board::canMoveMa(int moveid, int row, int col, int killid)
 {
     int dy = abs(_s[moveid]._row - row);
     int dx = abs(_s[moveid]._col - col);
@@ -350,7 +350,7 @@ bool MainWindow::canMoveMa(int moveid, int row, int col, int killid)
     return false;
 }
 
-bool MainWindow::canMovePao(int moveid, int row, int col, int killid)
+bool Board::canMovePao(int moveid, int row, int col, int killid)
 {
     if(killid == -1){
        return canMoveJu(moveid,row,col,killid);
@@ -370,7 +370,7 @@ bool MainWindow::canMovePao(int moveid, int row, int col, int killid)
     }
 }
 
-bool MainWindow::canMoveBing(int moveid, int row, int col, int killid)
+bool Board::canMoveBing(int moveid, int row, int col, int )
 {
     if(_s[moveid]._red){
         if(row<_s[moveid]._row) return false;
@@ -392,14 +392,14 @@ bool MainWindow::canMoveBing(int moveid, int row, int col, int killid)
 
 }
 
-int MainWindow::relation(int row1, int col1, int row, int col)
+int Board::relation(int row1, int col1, int row, int col)
 {
     return qAbs(row1-row)*10+qAbs(col1-col);
 }
 
 
 
-bool MainWindow::hasStone(int row, int col)
+bool Board::hasStone(int row, int col)
 {
     for(int i=0;i<32;i++)
             if(_s[i]._dead==false && _s[i]._row == row && _s[i]._col == col)
@@ -407,7 +407,7 @@ bool MainWindow::hasStone(int row, int col)
         return false;
 }
 
-int MainWindow::hasStone(int a, int b, bool bRow, int row, int col)
+int Board::hasStone(int a, int b, bool bRow, int row, int col)
 {
     int t = 0;
         int mn = min(a,b);

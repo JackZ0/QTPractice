@@ -26,12 +26,14 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        MainWindow.cpp \
-    Stone.cpp
+    Stone.cpp \
+    Board.cpp \
+    SingleGame.cpp
 
 HEADERS += \
-        MainWindow.h \
-    Stone.h
+    Stone.h \
+    Board.h \
+    SingleGame.h
 
 FORMS += \
         MainWindow.ui
