@@ -5,6 +5,7 @@
 #include <QtCharts/QChartView>
 #include <QtCharts>
 #include <QChart>
+#include <QGraphicsScene>
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -23,6 +24,7 @@ public:
 private:
     Ui::Dialog *ui;
     QChart* m_chart;
+    QGraphicsScene *m_pScence;
 };
 
 #endif // DIALOG_H
