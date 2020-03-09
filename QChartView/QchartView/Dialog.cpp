@@ -15,10 +15,19 @@ Dialog::Dialog(QWidget *parent) :
 //构建图表对象
     m_chart = new QChart();
 
-    // 创建坐标轴
-    m_chart->createDefaultAxes();
+
    //将线添加到图表
     m_chart->addSeries(lineSeries);
+
+    // 创建坐标轴
+    m_chart->createDefaultAxes();
+
+
+    //影藏图例
+    m_chart->legend()->hide();
+
+    //设置主题颜色
+    m_chart->setTheme(QtCharts::QChart::ChartThemeBrownSand);
 //将图表绑定到视图
     ui->widget->setChart(m_chart);
 }
