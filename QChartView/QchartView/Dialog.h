@@ -33,6 +33,13 @@ private:
     QValueAxis *m_axisX;
     QValueAxis *m_axisY;
 
+    /**
+     * @brief getData  获取数据，内部模拟生成数据变化
+     * @param x X坐标
+     * @return
+     */
+    qreal getData(qreal x);
+
 private slots:
     void slot_timer();
 };

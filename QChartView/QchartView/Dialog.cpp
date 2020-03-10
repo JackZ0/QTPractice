@@ -1,6 +1,7 @@
 #include "Dialog.h"
 #include "ui_Dialog.h"
 
+const quint32 c_max = 1000;
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog),mtLast(0)
@@ -8,8 +9,10 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
 
     lineSeries = new QSplineSeries(this);
-    for(size_t i =0; i< 100; i++){
-        lineSeries->append(i,10*sin(0.6f*i));
+    qreal x = 0.f;
+    for(size_t i =0; i< c_max; i++){
+        x = qreal(i+1)/c_max;
+        lineSeries->append(i,getData(x));
     }
 
 //构建图表对象
@@ -61,6 +64,11 @@ Dialog::~Dialog()
     m_chart->removeAllSeries();
 }
 
+qreal Dialog::getData(qreal x)
+{
+    return qSin(x*2*M_PI)*7;
+}
+
 void Dialog::slot_timer()
 {
     //用一个静态对象存储启动时间
@@ -77,10 +85,12 @@ void Dialog::slot_timer()
         ptsNew.append(QPointF(index,psOld[nSkip+index].y()));
     }
 
-    //补充新数据
+    qreal x = 0.f;
 
+    //补充新数据
     for(index =psOld.count()- nSkip; index < psOld.count(); index++){
-        ptsNew.append(QPointF(index,10*sin(0.6f*index)));
+        x = qreal(mtLast+index +1)/c_max;
+        ptsNew.append(QPointF(index,getData(x)));
     }
     //更新序列
     lineSeries->replace(ptsNew);
