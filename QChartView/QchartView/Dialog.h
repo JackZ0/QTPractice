@@ -6,7 +6,7 @@
 #include <QtCharts>
 #include <QChart>
 #include <QGraphicsScene>
-
+#include <QTimer>
 QT_CHARTS_USE_NAMESPACE
 
 namespace Ui {
@@ -24,7 +24,17 @@ public:
 private:
     Ui::Dialog *ui;
     QChart* m_chart;
+    QTimer *m_time;
     QGraphicsScene *m_pScence;
+    QLineSeries *lineSeries;
+    qint64 mtLast;
+
+
+    QValueAxis *m_axisX;
+    QValueAxis *m_axisY;
+
+private slots:
+    void slot_timer();
 };
 
 #endif // DIALOG_H
