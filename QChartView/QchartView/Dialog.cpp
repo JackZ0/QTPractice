@@ -25,8 +25,10 @@ Dialog::Dialog(QWidget *parent) :
     // 创建坐标轴
 //    m_chart->createDefaultAxes();
     m_axisX = new QValueAxis();
-    m_axisX->setRange(0,1000);
+    m_axisX->setRange(0,c_max);
     m_axisX->setTitleText("X");
+    m_axisX->setLabelFormat("%g"); //小数点显示
+    m_axisX->setTickCount(10);  // 设置刻度
 
     m_axisY = new QValueAxis();
     m_axisY->setRange(-10,10);
