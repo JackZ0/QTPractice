@@ -1,7 +1,7 @@
 #include "Dialog.h"
 #include "ui_Dialog.h"
 
-const quint32 c_max = 1000;
+const quint32 c_max = 100;
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog),m_x(0.f),lineSeries(NULL)
@@ -9,6 +9,8 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
 
     lineSeries = new QSplineSeries(this);
+    m_x = 99;
+    lineSeries->append(m_x,1);
 
 
 //构建图表对象
@@ -30,7 +32,7 @@ Dialog::Dialog(QWidget *parent) :
     m_axisY->setRange(-10,10);
     m_axisY->setTitleText("Y");
     //影藏图例
-//    m_chart->legend()->hide();
+    m_chart->legend()->hide();
     m_chart->setAxisX(m_axisX,lineSeries);
     m_chart->setAxisY(m_axisY,lineSeries);
     //设置主题颜色
@@ -40,7 +42,7 @@ Dialog::Dialog(QWidget *parent) :
 
     m_pScence = new QGraphicsScene(this);
 
-    m_chart->setGeometry(0,0,100,300);
+    m_chart->setGeometry(0,0,500,300);
 
     m_pScence->addItem(m_chart);
 
@@ -51,7 +53,7 @@ Dialog::Dialog(QWidget *parent) :
 
     ui->widget->setRenderHint(QPainter::Antialiasing,true);
     m_time = new QTimer(this);
-    m_time->setInterval(100);//采样周期
+    m_time->setInterval(1000);//采样周期
     connect(m_time,&QTimer::timeout,this,&Dialog::slot_timer);
     m_time->start();
 }
@@ -70,15 +72,18 @@ qreal Dialog::getData(qreal x)
 void Dialog::slot_timer()
 {
     qreal xOffset = 0.f;
-    qreal dIncrease =0.5;
+    qreal dIncrease =1;
 
-    for(int i =0; i < 10;i++){
+    for(int i =0; i < c_max;i++){
         m_x +=dIncrease;
         xOffset +=dIncrease;
         lineSeries->append(m_x,qrand()%10);
     }
+    if(lineSeries->count()*dIncrease >c_max){
+        lineSeries->removePoints(0,lineSeries->count()*dIncrease-c_max);
+    }
 
     qreal xUnit = m_chart->plotArea().width() / (m_axisX->max() - m_axisX->min());
-    qreal yScroll = xOffset*xUnit;
-    m_chart->scroll(m_x,yScroll);
+    qreal xScroll = xOffset*xUnit;
+    m_chart->scroll(xScroll,0);
 }
