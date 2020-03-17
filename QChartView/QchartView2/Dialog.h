@@ -27,6 +27,8 @@ private:
     QTimer *m_time;
     QGraphicsScene *m_pScence;
     QLineSeries *lineSeries;
+    QLineSeries *lineSeries2;
+
     qreal m_x;
 
     QValueAxis *m_axisX;
@@ -38,6 +40,8 @@ private:
      * @return
      */
     qreal getData(qreal x);
+    void changeStyle();
+    void setDialogPalette();
 
 private slots:
     void slot_timer();

@@ -7,8 +7,10 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog),m_x(0.f),lineSeries(NULL)
 {
     ui->setupUi(this);
-
+//    setWindowFlags(Qt::FramelessWindowHint);
     lineSeries = new QSplineSeries(this);
+    lineSeries2 = new QSplineSeries(this);
+
     m_x = 99;
     lineSeries->append(m_x,1);
 
@@ -67,6 +69,63 @@ Dialog::~Dialog()
 qreal Dialog::getData(qreal x)
 {
     return qSin(x*2*M_PI)*7;
+}
+
+void Dialog::changeStyle()
+{
+    //窗体
+    setDialogPalette();
+    //图表
+
+    //文字
+
+    //标题
+
+    // 刻度
+}
+
+void Dialog::setDialogPalette()
+{
+    QChart::ChartTheme theme = QChart::ChartThemeBlueIcy;
+    m_chart->setTheme(theme);
+
+    QPalette pal = window()->palette();
+    switch (theme) {
+        case QChart::ChartThemeLight:
+        pal.setColor(QPalette::Window,QRgb(0xF0f0f0));
+        pal.setColor(QPalette::WindowText,QRgb(0xF0f0f0));
+        break;
+    case QChart::ChartThemeBlueCerulean:
+        pal.setColor(QPalette::Window,QRgb(0xF4f4f0));
+        pal.setColor(QPalette::WindowText,QRgb(0xF4f0f4));
+        break;
+    case QChart::ChartThemeDark:
+        pal.setColor(QPalette::Window,QRgb(0x20f0f0));
+        pal.setColor(QPalette::WindowText,QRgb(0x20f0f0));
+        break;
+    case QChart::ChartThemeBrownSand:
+        pal.setColor(QPalette::Window,QRgb(0xF060f0));
+        pal.setColor(QPalette::WindowText,QRgb(0x60f0f0));
+        break;
+    case QChart::ChartThemeBlueNcs:
+        pal.setColor(QPalette::Window,QRgb(0xF080f0));
+        pal.setColor(QPalette::WindowText,QRgb(0x80f0f0));
+        break;
+    case QChart::ChartThemeHighContrast:
+        pal.setColor(QPalette::Window,QRgb(0xF010f0));
+        pal.setColor(QPalette::WindowText,QRgb(0xF010f0));
+        break;
+    case QChart::ChartThemeBlueIcy:
+        pal.setColor(QPalette::Window,QRgb(0x11f0f0));
+        pal.setColor(QPalette::WindowText,QRgb(0x11f0f0));
+        break;
+    case QChart::ChartThemeQt:
+    default:
+        pal.setColor(QPalette::Window,QRgb(0x44f0f0));
+        pal.setColor(QPalette::WindowText,QRgb(0x44f0f0));
+        break;
+    }
+    window()->setPalette(pal);
 }
 
 void Dialog::slot_timer()
