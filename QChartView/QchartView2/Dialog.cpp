@@ -19,6 +19,8 @@ Dialog::Dialog(QWidget *parent) :
     m_chart = new QChart();
 
 
+    QChart::AnimationOptions anioption= QChart::AllAnimations;
+    m_chart->setAnimationOptions(anioption);
    //将线添加到图表
     m_chart->addSeries(lineSeries);
 
@@ -54,6 +56,7 @@ Dialog::Dialog(QWidget *parent) :
 //    ui->widget->setChart(m_chart);
 
     ui->widget->setRenderHint(QPainter::Antialiasing,true);
+    changeStyle();
     m_time = new QTimer(this);
     m_time->setInterval(1000);//采样周期
     connect(m_time,&QTimer::timeout,this,&Dialog::slot_timer);
@@ -76,12 +79,53 @@ void Dialog::changeStyle()
     //窗体
     setDialogPalette();
     //图表
+    m_chart->setBackgroundVisible(true);
+    m_chart->setBackgroundBrush(Qt::transparent);
 
+    //绘图区
+
+    m_chart->setPlotAreaBackgroundVisible(true);
+    m_chart->setPlotAreaBackgroundBrush(Qt::gray);
     //文字
 
     //标题
+    QFont fontTitle;
+    fontTitle.setFamily(QString::fromLocal8Bit("华文琥珀"));
+    fontTitle.setPointSizeF(20.f);
+    m_chart->setTitleFont(fontTitle);
 
+    m_chart->setTitleBrush(Qt::black);
     // 刻度
+
+    QFont fontAxis;
+    fontAxis.setFamily(QString::fromLocal8Bit("微软雅黑"));
+    fontAxis.setPointSizeF(12.f);
+    m_axisX->setTitleFont(fontAxis);
+    m_axisY->setTitleFont(fontAxis);
+
+    m_axisX->setTitleBrush(Qt::darkMagenta);
+    m_axisY->setTitleBrush(Qt::darkMagenta);
+
+    m_axisX->setGridLineVisible(true);
+    m_axisY->setGridLineVisible(true);
+
+    QFont fontLabel;
+    fontLabel.setFamily(QString::fromLocal8Bit("微软雅黑"));
+    fontLabel.setPointSizeF(12.f);
+
+    m_axisX->setLabelsFont(fontLabel);
+    m_axisY->setLabelsFont(fontLabel);
+
+
+    //图例
+
+    m_chart->legend()->setAlignment(Qt::AlignLeft);
+
+
+    QPen pnl(Qt::green,2.f);
+    lineSeries->setPen(pnl);
+
+
 }
 
 void Dialog::setDialogPalette()
