@@ -13,6 +13,7 @@ Dialog::Dialog(QWidget *parent) :
 
     m_x = 99;
     lineSeries->append(m_x,1);
+    lineSeries2->append(m_x+10,1);
 
 
 //构建图表对象
@@ -23,6 +24,7 @@ Dialog::Dialog(QWidget *parent) :
     m_chart->setAnimationOptions(anioption);
    //将线添加到图表
     m_chart->addSeries(lineSeries);
+    m_chart->addSeries(lineSeries2);
 
     // 创建坐标轴
 //    m_chart->createDefaultAxes();
@@ -39,6 +41,8 @@ Dialog::Dialog(QWidget *parent) :
     m_chart->legend()->hide();
     m_chart->setAxisX(m_axisX,lineSeries);
     m_chart->setAxisY(m_axisY,lineSeries);
+    m_chart->setAxisX(m_axisX,lineSeries2);
+    m_chart->setAxisY(m_axisY,lineSeries2);
     //设置主题颜色
     m_chart->setTheme(QtCharts::QChart::ChartThemeBlueCerulean);
 
@@ -60,6 +64,9 @@ Dialog::Dialog(QWidget *parent) :
     m_time = new QTimer(this);
     m_time->setInterval(1000);//采样周期
     connect(m_time,&QTimer::timeout,this,&Dialog::slot_timer);
+    connect(lineSeries,&QSplineSeries::hovered,this,&Dialog::slot_S1Hovered);
+    connect(lineSeries2,&QSplineSeries::hovered,this,&Dialog::slot_S2Hovered);
+
     m_time->start();
 }
 
@@ -181,12 +188,37 @@ void Dialog::slot_timer()
         m_x +=dIncrease;
         xOffset +=dIncrease;
         lineSeries->append(m_x,qrand()%10);
+        lineSeries2->append(m_x+10,qrand()%10);
+
     }
     if(lineSeries->count()*dIncrease >c_max){
         lineSeries->removePoints(0,lineSeries->count()*dIncrease-c_max);
+        lineSeries2->append(m_x+10,qrand()%10);
+
     }
 
     qreal xUnit = m_chart->plotArea().width() / (m_axisX->max() - m_axisX->min());
     qreal xScroll = xOffset*xUnit;
     m_chart->scroll(xScroll,0);
+}
+
+/**
+ * @brief Dialog::slot_S1Hovered
+ * @param point  悬浮时的坐标
+ * @param state  进入或退出
+ */
+void Dialog::slot_S1Hovered(const QPointF &point, bool state)
+{
+    QPen penHighlit(Qt::white,5.f);
+    if(state){
+        lineSeries->setPen(penHighlit);
+    }
+    else{
+        lineSeries->setPen(penSeries);
+    }
+}
+
+void Dialog::slot_S2Hovered(const QPointF &point, bool state)
+{
+
 }
