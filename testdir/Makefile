@@ -210,6 +210,7 @@ Makefile: testdir.pro D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/win32-g++/qmake.con
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/qt_config.prf \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/toolchain.prf \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/default_pre.prf \
@@ -236,6 +237,7 @@ Makefile: testdir.pro D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/win32-g++/qmake.con
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/qtmaind.prl \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Widgets.prl \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Gui.prl \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5SerialPort.prl \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile testdir.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -387,6 +389,7 @@ D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/qt_functions.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/qt_config.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/win32-g++/qmake.conf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/exclusive_builds.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/toolchain.prf:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/features/default_pre.prf:
@@ -413,6 +416,7 @@ testdir.pro:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/qtmaind.prl:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Widgets.prl:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Gui.prl:
+D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5SerialPort.prl:
 D:/Qt/Qt5.9.7/5.9.7/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile testdir.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
