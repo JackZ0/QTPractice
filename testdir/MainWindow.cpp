@@ -23,8 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBoxCheck->addItems(check);
     ui->comboBoxDataBit->addItems(databit);
     getPortInfo();
-    setPortConfig();
-    connect(m_serialPort,SIGNAL(readyRead()),this,SLOT(receiveInfo()));
+//    setPortConfig();
 
 
 }
@@ -76,16 +75,21 @@ void MainWindow::getData()
 void MainWindow::receiveInfo()
 {
     QByteArray info = m_serialPort->readAll();
+    qDebug() << info.size()<<endl;
+    for(int i = 0; i < info.size(); i++){
+        qDebug() << info[i] <<endl;
+    }
+    qDebug() << info << "info" << endl;
     QByteArray hexData = info.toHex();
     qDebug() << hexData << "hexData" << endl;
-    if(hexData == "0x01"){
+    ui->textEditRecv->insertPlainText(hexData);
+    if(hexData == "0000000000000000000030"){
         qDebug() <<"run normal" << endl;
     }
     else {
         qDebug() << "run unnormal" << endl;
     }
 }
-
 void MainWindow::sendSerialData()
 {
    m_serialPort->write("send !");
@@ -94,6 +98,7 @@ void MainWindow::sendSerialData()
 void MainWindow::on_pushButtonOperation_clicked()
 {
     if (ui->pushButtonOperation->text() == tr("open")){
+        m_serialPort->setPortName(ui->comboBoxSerialNum->currentText());
         int baudselect = ui->comboBoxBaud->currentIndex();
         int databit = ui->comboBoxDataBit->currentIndex();
         int check = ui->comboBoxCheck->currentIndex();
@@ -166,7 +171,13 @@ void MainWindow::on_pushButtonOperation_clicked()
         ui->comboBoxSerialNum->setEnabled(false);
         ui->comboBoxStop->setEnabled(false);
         ui->pushButtonOperation->setText("close");
-    }else{
+        if(!m_serialPort->open(QIODevice::ReadWrite)){
+            qDebug() << m_serialPort->portName() << "打开失败";
+            return;
+        }
+        connect(m_serialPort,SIGNAL(readyRead()),this,SLOT(receiveInfo()));
+    } else {
+
         m_serialPort->close();
         ui->comboBoxBaud->setEnabled(true);
         ui->comboBoxCheck->setEnabled(true);
@@ -174,5 +185,16 @@ void MainWindow::on_pushButtonOperation_clicked()
         ui->comboBoxSerialNum->setEnabled(true);
         ui->comboBoxStop->setEnabled(true);
         ui->pushButtonOperation->setText("open");
+        m_serialPort->clear();
+        ui->textEditRecv->clear();
     }
+//    m_serialPort->setPortName("com1");
+
+    qDebug() << "打开成功！";
+
+}
+
+void MainWindow::on_pushButtonClear_clicked()
+{
+    ui->textEditRecv->clear();
 }

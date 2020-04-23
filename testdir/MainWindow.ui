@@ -50,7 +50,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QTextEdit" name="textEdit"/>
+       <widget class="QTextEdit" name="textEditRecv"/>
       </item>
      </layout>
     </item>
@@ -149,7 +149,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QTextEdit" name="textEdit_2"/>
+       <widget class="QTextEdit" name="textEditSend"/>
       </item>
      </layout>
     </item>

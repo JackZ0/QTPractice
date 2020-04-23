@@ -41,7 +41,7 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_6;
     QPushButton *pushButtonClear;
-    QTextEdit *textEdit;
+    QTextEdit *textEditRecv;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
     QComboBox *comboBoxBaud;
@@ -61,7 +61,7 @@ public:
     QHBoxLayout *horizontalLayout_7;
     QLabel *label_7;
     QPushButton *pushButton;
-    QTextEdit *textEdit_2;
+    QTextEdit *textEditSend;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -112,10 +112,10 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_6);
 
-        textEdit = new QTextEdit(centralWidget);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEditRecv = new QTextEdit(centralWidget);
+        textEditRecv->setObjectName(QStringLiteral("textEditRecv"));
 
-        verticalLayout_2->addWidget(textEdit);
+        verticalLayout_2->addWidget(textEditRecv);
 
 
         gridLayout->addLayout(verticalLayout_2, 0, 1, 6, 1);
@@ -219,10 +219,10 @@ public:
 
         verticalLayout_3->addLayout(horizontalLayout_7);
 
-        textEdit_2 = new QTextEdit(centralWidget);
-        textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
+        textEditSend = new QTextEdit(centralWidget);
+        textEditSend->setObjectName(QStringLiteral("textEditSend"));
 
-        verticalLayout_3->addWidget(textEdit_2);
+        verticalLayout_3->addWidget(textEditSend);
 
 
         gridLayout->addLayout(verticalLayout_3, 6, 1, 1, 1);
