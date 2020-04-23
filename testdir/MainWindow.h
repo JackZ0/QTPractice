@@ -29,6 +29,7 @@ private slots:
     void getData();
     void receiveInfo();
     void sendSerialData();
+    void on_pushButtonOperation_clicked();
 };
 
 #endif // MAINWINDOW_H
