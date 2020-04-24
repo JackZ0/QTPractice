@@ -3,6 +3,8 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QDebug>
+#include <QTextCodec>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,8 +26,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBoxDataBit->addItems(databit);
     getPortInfo();
 //    setPortConfig();
-
-
 }
 
 MainWindow::~MainWindow()
@@ -55,7 +55,6 @@ void MainWindow::setPortConfig()
         m_serialPort->clear();
         m_serialPort->close();
     }
-//    m_serialPort->setPortName("com1");
     if(!m_serialPort->open(QIODevice::ReadWrite)){
         qDebug() << m_serialPort << "打开失败";
         return;
@@ -74,30 +73,31 @@ void MainWindow::getData()
 
 void MainWindow::receiveInfo()
 {
-    QByteArray info = m_serialPort->readAll();
-    qDebug() << info.size()<<endl;
-    for(int i = 0; i < info.size(); i++){
-        qDebug() << info[i] <<endl;
-    }
-    qDebug() << info << "info" << endl;
-    QByteArray hexData = info.toHex();
-    qDebug() << hexData << "hexData" << endl;
-    ui->textEditRecv->insertPlainText(hexData);
-    if(hexData == "0000000000000000000030"){
-        qDebug() <<"run normal" << endl;
-    }
-    else {
-        qDebug() << "run unnormal" << endl;
+    if(m_serialPort->isOpen()){
+
+        QByteArray info;
+        info.clear();
+        info = m_serialPort->readAll();
+        QTextCodec *codec = QTextCodec::codecForName("KOI8-R");
+        if(!info.isEmpty()){
+            QString str = codec->toUnicode(info);
+            ui->textEditRecv->append(str);
+            if(str=="0"){
+                qDebug() << "正常运行" <<endl;
+            }
+            else {
+                qDebug() << "报警" <<endl;
+                QMessageBox::information(this,"警告","报警了");
+            }
+        }
     }
 }
-void MainWindow::sendSerialData()
-{
-   m_serialPort->write("send !");
-}
+
 
 void MainWindow::on_pushButtonOperation_clicked()
 {
-    if (ui->pushButtonOperation->text() == tr("open")){
+    if (ui->pushButtonOperation->text() == tr("open"))
+    {
         m_serialPort->setPortName(ui->comboBoxSerialNum->currentText());
         int baudselect = ui->comboBoxBaud->currentIndex();
         int databit = ui->comboBoxDataBit->currentIndex();
@@ -177,7 +177,6 @@ void MainWindow::on_pushButtonOperation_clicked()
         }
         connect(m_serialPort,SIGNAL(readyRead()),this,SLOT(receiveInfo()));
     } else {
-
         m_serialPort->close();
         ui->comboBoxBaud->setEnabled(true);
         ui->comboBoxCheck->setEnabled(true);
@@ -188,13 +187,13 @@ void MainWindow::on_pushButtonOperation_clicked()
         m_serialPort->clear();
         ui->textEditRecv->clear();
     }
-//    m_serialPort->setPortName("com1");
-
-    qDebug() << "打开成功！";
-
 }
-
 void MainWindow::on_pushButtonClear_clicked()
 {
     ui->textEditRecv->clear();
+}
+
+void MainWindow::on_sendButton_clicked()
+{
+    m_serialPort->write(ui->textEditSend->toPlainText().toLatin1());
 }

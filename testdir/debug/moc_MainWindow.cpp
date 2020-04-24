@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[7];
-    char stringdata0[105];
+    char stringdata0[112];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,14 +35,15 @@ QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 7), // "getData"
 QT_MOC_LITERAL(2, 19, 0), // ""
 QT_MOC_LITERAL(3, 20, 11), // "receiveInfo"
-QT_MOC_LITERAL(4, 32, 14), // "sendSerialData"
-QT_MOC_LITERAL(5, 47, 30), // "on_pushButtonOperation_clicked"
-QT_MOC_LITERAL(6, 78, 26) // "on_pushButtonClear_clicked"
+QT_MOC_LITERAL(4, 32, 30), // "on_pushButtonOperation_clicked"
+QT_MOC_LITERAL(5, 63, 26), // "on_pushButtonClear_clicked"
+QT_MOC_LITERAL(6, 90, 21) // "on_sendButton_clicked"
 
     },
     "MainWindow\0getData\0\0receiveInfo\0"
-    "sendSerialData\0on_pushButtonOperation_clicked\0"
-    "on_pushButtonClear_clicked"
+    "on_pushButtonOperation_clicked\0"
+    "on_pushButtonClear_clicked\0"
+    "on_sendButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -84,9 +85,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->getData(); break;
         case 1: _t->receiveInfo(); break;
-        case 2: _t->sendSerialData(); break;
-        case 3: _t->on_pushButtonOperation_clicked(); break;
-        case 4: _t->on_pushButtonClear_clicked(); break;
+        case 2: _t->on_pushButtonOperation_clicked(); break;
+        case 3: _t->on_pushButtonClear_clicked(); break;
+        case 4: _t->on_sendButton_clicked(); break;
         default: ;
         }
     }

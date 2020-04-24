@@ -60,7 +60,7 @@ public:
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_7;
     QLabel *label_7;
-    QPushButton *pushButton;
+    QPushButton *sendButton;
     QTextEdit *textEditSend;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -211,10 +211,10 @@ public:
 
         horizontalLayout_7->addWidget(label_7);
 
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        sendButton = new QPushButton(centralWidget);
+        sendButton->setObjectName(QStringLiteral("sendButton"));
 
-        horizontalLayout_7->addWidget(pushButton);
+        horizontalLayout_7->addWidget(sendButton);
 
 
         verticalLayout_3->addLayout(horizontalLayout_7);
@@ -257,7 +257,7 @@ public:
         label_5->setText(QApplication::translate("MainWindow", "\344\270\262\345\217\243\346\223\215\344\275\234\357\274\232", Q_NULLPTR));
         pushButtonOperation->setText(QApplication::translate("MainWindow", "open", Q_NULLPTR));
         label_7->setText(QApplication::translate("MainWindow", "\345\217\221\351\200\201\345\214\272\345\237\237\357\274\232", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "\345\217\221\351\200\201", Q_NULLPTR));
+        sendButton->setText(QApplication::translate("MainWindow", "\345\217\221\351\200\201", Q_NULLPTR));
     } // retranslateUi
 
 };
