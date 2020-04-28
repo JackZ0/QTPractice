@@ -209,7 +209,7 @@ debug/moc_MainWindow.cpp: D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/QMain
 		MainWindow.h \
 		debug/moc_predefs.h \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/bin/moc.exe
-	D:\Qt\Qt5.9.7\5.9.7\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/win32-g++ -IF:/github/testdir -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/include -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtGui -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtANGLE -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore -Id:/Qt/Qt5.9.7/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -Id:/Qt/Qt5.9.7/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -Id:/Qt/Qt5.9.7/Tools/mingw530_32/i686-w64-mingw32/include -Id:/Qt/Qt5.9.7/Tools/mingw530_32/i686-w64-mingw32/include/c++ -Id:/Qt/Qt5.9.7/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -Id:/Qt/Qt5.9.7/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward MainWindow.h -o debug\moc_MainWindow.cpp
+	D:\Qt\Qt5.9.7\5.9.7\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/mkspecs/win32-g++ -IF:/zhanghao/QTPractice/testdir -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/include -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtGui -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtANGLE -ID:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore -Id:/Qt/Qt5.9.7/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -Id:/Qt/Qt5.9.7/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -Id:/Qt/Qt5.9.7/Tools/mingw530_32/i686-w64-mingw32/include -Id:/Qt/Qt5.9.7/Tools/mingw530_32/i686-w64-mingw32/include/c++ -Id:/Qt/Qt5.9.7/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -Id:/Qt/Qt5.9.7/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward MainWindow.h -o debug\moc_MainWindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -346,6 +346,8 @@ debug/main.o: main.cpp MainWindow.h \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/QDir \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/qdir.h \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/qfileinfo.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/QTime \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/qdatetime.h \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
@@ -453,7 +455,45 @@ debug/MainWindow.o: MainWindow.cpp MainWindow.h \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtGui/qtouchdevice.h \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qtabwidget.h \
 		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtGui/qicon.h \
-		ui_MainWindow.h
+		ui_MainWindow.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/QVariant \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/QAction \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qaction.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qactiongroup.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/QApplication \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qapplication.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/qeventloop.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtGui/qguiapplication.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtGui/qinputmethod.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/QButtonGroup \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/QHeaderView \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qheaderview.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qframe.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qstyleoption.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtGui/qvalidator.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtCore/qregularexpression.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qslider.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qabstractslider.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qstyle.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qtabbar.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qrubberband.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/QMenuBar \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qmenubar.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qmenu.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/QStatusBar \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qstatusbar.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/QToolBar \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/qtoolbar.h \
+		D:/Qt/Qt5.9.7/5.9.7/mingw53_32/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\MainWindow.o MainWindow.cpp
 
 debug/moc_MainWindow.o: debug/moc_MainWindow.cpp 

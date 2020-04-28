@@ -35,14 +35,15 @@ int FindFile(const QString& _filePath)
         else{
             for(int m = 0; m <infolist.size(); m++) {
                                 //这里是获取当前要处理的文件名
-                qDebug() << infolist.at(m);
-                QString src=fileInfo.filePath();
+//                qDebug() << infolist.at(m);
+                qDebug()<< fileInfo.dir().path() << "Path" <<endl;
+                QString src=fileInfo.dir().path()+"/"+infolist.at(m);
                 filelist.append(src);
                  qDebug() << "src" << src;
-                QString dst = "D://111111/"+QString::number(k)+".jpg";
+                QString dst = "D://allback/"+QString::number(k)+".jpg";
+                qDebug()<< "dest" << dst << endl;
                 QFile file(src);
                 file.copy(dst);
-
                 k++;
             }
             break;
