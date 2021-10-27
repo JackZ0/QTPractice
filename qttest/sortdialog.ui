@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sortDialog</class>
+ <widget class="QDialog" name="sortDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>350</width>
+    <height>412</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>10</y>
+     <width>82</width>
+     <height>138</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_9">
+    <item>
+     <widget class="QPushButton" name="okButton">
+      <property name="text">
+       <string>OK</string>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="cancelButton">
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QPushButton" name="moreButton">
+      <property name="text">
+       <string>&amp;More</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>11</y>
+     <width>202</width>
+     <height>387</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QGroupBox" name="primarygroupBox">
+      <property name="title">
+       <string>&amp;Primary Key</string>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Column:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="PrimaryColumnCombo">
+             <item>
+              <property name="text">
+               <string>None</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Order:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="primaryOrderCombo">
+             <item>
+              <property name="text">
+               <string>Ascending</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Descending</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="SecondaryGroupBox">
+      <property name="title">
+       <string>&amp;Secondary Key</string>
+      </property>
+      <layout class="QFormLayout" name="formLayout_4">
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>Column:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="secondaryColumnCombo">
+             <item>
+              <property name="text">
+               <string>None</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Order:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="secondaryOrderCombo">
+             <item>
+              <property name="text">
+               <string>Ascending</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Descending</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="TertiaryGroupBox">
+      <property name="title">
+       <string>&amp;Tertiary Key</string>
+      </property>
+      <layout class="QFormLayout" name="formLayout_5">
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_11">
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Column:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="tertiaryColumnCombo">
+             <item>
+              <property name="text">
+               <string>None</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <item>
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Order:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="tertiaryOrderCombo">
+             <item>
+              <property name="text">
+               <string>Ascending</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Descending</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>sortDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>293</x>
+     <y>24</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>65</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>sortDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>320</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>141</x>
+     <y>154</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moreButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SecondaryGroupBox</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>308</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>194</x>
+     <y>228</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
