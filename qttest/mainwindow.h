@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QAction>
+#include <QLabel>
+#include <QMenu>
+#include <QMenuBar>
+#include <QPushButton>
 
 class QAction;
 class QLabel;
@@ -57,7 +62,9 @@ private:
     QToolBar *editToolBar;
     QAction *newAction;
     QAction *openAction;
-
+    QAction *saveAsAction;
+    QAction *saveAction;
+    QAction *exitAction;
     QAction *aboutQtAction;
 
 

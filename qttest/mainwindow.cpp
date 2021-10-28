@@ -1,12 +1,23 @@
 #include "mainwindow.h"
 #include "finddialog.h"
-
+#include "spreadsheet.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 
 {
- //  spreedsheet = new Spreadsheet;
+   spreedsheet = new Spreadsheet;
+   setCentralWidget(spreedsheet);
 
+   createAction();
+   createMenus();
+   createContextMenu();
+   createToolBars();
+   createStatusBar();
+
+   readSettings();
+   findDialog = 0;
+   setWindowIcon(QIcon(":/images/icon.png"));
+   setCurrentFile("");
 }
 
 MainWindow::~MainWindow()
@@ -21,11 +32,25 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::createAction()
 {
-
+    newAction = new QAction(tr("New"),this);
+    newAction->setIcon(QIcon(":images/icon.png"));
+    newAction->setShortcut(QKeySequence::New);
+    connect(newAction,SIGNAL(triggered()),this,SLOT(newFile()));
 }
 
 void MainWindow::createMenus()
 {
+    fileMenu = menuBar()->addMenu(tr("&File"));
+    fileMenu->addAction(newAction);
+    fileMenu->addAction(openAction);
+    fileMenu->addAction(saveAction);
+    fileMenu->addAction(saveAsAction);
+
+    seperatorAction = fileMenu->addSeparator();
+    for(int i = 0; i < MaxRecentFils;i++)
+        fileMenu->addAction(recentFileActions[i]);
+    fileMenu->addSeparator();
+    fileMenu->addAction(exitAction);
 
 }
 

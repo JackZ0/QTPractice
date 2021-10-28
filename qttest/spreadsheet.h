@@ -1,6 +1,9 @@
 #ifndef SPREADSHEET_H
 #define SPREADSHEET_H
 #include <QTableWidget>
+#include <QFile>
+#include <QTextStream>
+#include <QMessageBox>
 
 class Cell;
 class SpreadsheetCompare;
@@ -28,18 +31,19 @@ public slots:
     void recalculate();
     void setAutoRecalculate(bool recalc);
     void findNext(const QString &str,Qt::CaseSensitivity cs);
-
+    void somethingChanged();
 
 signals:
     void modified();
 
-private slots:
-    void somethingChanged();
+
+
 
 private:
     enum{MagicNumber = 0x7F51C883,RowCount=999,ColumnCount=26};
     Cell *cell(int row, int column) const;
     QString text(int row, int column) const;
+    QString formula(int row, int column) const;
     void setFormula(int row, int column, const QString &formular);
     bool autoRecalc;
 };
