@@ -77,6 +77,32 @@ void MainWindow::action1_sqlite()
    m_dialog1->setFixedSize(QSize(800,800));
    m_dialog1->setWindowTitle(tr("sqlite 数据"));
 
+   //建立并打开数据库
+   QSqlDatabase database;
+   database = QSqlDatabase::addDatabase("QSQLITE");
+   database.setDatabaseName("test.db");
+
+    if (!database.open())
+    {
+      qDebug() << "Error: Failed to connect database." << database.lastError();
+    }
+    else
+    {
+      qDebug() << "Succeed to connect database." ;
+    }
+
+    QSqlQuery sql_query;
+
+    if(!sql_query.exec("INSERT INTO main.HDR (Id, Value, timestamp) VALUES (1, 23.0, '2022-2-11 00:02:00');"))
+        {
+            qDebug() << sql_query.lastError();
+        }
+        else
+        {
+            qDebug() << "inserted 1!";
+        }
+
+
    QTableWidget *m_tablewidget = new QTableWidget(m_dialog1);
    QRect m_rect(100,100,500,500);
    m_tablewidget->setColumnCount(5);
