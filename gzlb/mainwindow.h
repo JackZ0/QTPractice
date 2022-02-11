@@ -23,6 +23,7 @@ private:
     QMenu *menu3;
     QMenu *menu4;
     QMenu *menu5;
+    QMenu *menu6;
 
     QAction *action1;
     QAction *action2;
@@ -30,11 +31,19 @@ private:
     QAction *action4;
     QAction *action5;
 
+    QAction *action6;
+    QAction *action7;
+
+    QAction *action8;
+    QAction *action9;
+
 
     QDialog *m_dialog1;
+    QDialog *m_dialog2;
     QDialog *m_dialog3;
     QDialog *m_dialog4;
     QDialog *m_dialog5;
+
 private slots:
     void action1_sqlite();
     void action3_showGraphics();

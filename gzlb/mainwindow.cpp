@@ -31,21 +31,34 @@ void MainWindow::initUi()
    menu3 = new QMenu(tr("&分析"),this);
    menu4 = new QMenu(tr("&帮助"),this);
    menu5 = new QMenu(tr("&数据库测试"),this);
+   menu6 = new QMenu(tr("&通訊"),this);
    menuBar()->addMenu(menu1);
    menuBar()->addMenu(menu2);
    menuBar()->addMenu(menu3);
    menuBar()->addMenu(menu4);
    menuBar()->addMenu(menu5);
+   menuBar()->addMenu(menu6);
    action1 = new QAction(tr("sqlite"),this);
    action2 = new QAction(tr("mysql"),this);
    action3 = new QAction(tr("绘图1"),this);
    action4 = new QAction(tr("绘图2"),this);
    action5 = new QAction(tr("绘图3"),this);
+   action6 = new QAction(tr("json解析"),this);
+   action7 = new QAction(tr("xml解析"),this);
+   action8 = new QAction(tr("tcp/ip"),this);
+   action9 = new QAction(tr("串口"),this);
    menu5->addAction(action1);
    menu5->addAction(action2);
    menu2->addAction(action3);
    menu2->addAction(action4);
    menu2->addAction(action5);
+
+   menu3->addAction(action6);
+   menu3->addAction(action7);
+
+   menu6->addAction(action8);
+   menu6->addAction(action9);
+
    connect(action1,SIGNAL(triggered()),this,SLOT(action1_sqlite()));
    connect(action3,SIGNAL(triggered()),this,SLOT(action3_showGraphics()));
    connect(action4,SIGNAL(triggered()),this,SLOT(action4_showGraphics()));
