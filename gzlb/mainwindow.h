@@ -50,6 +50,7 @@ private slots:
     void action3_showGraphics();
     void action4_showGraphics();
     void action5_showGraphics();
+    void action6_showDialog();
     void action8_showDialog();
 
 

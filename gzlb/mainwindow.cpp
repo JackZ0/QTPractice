@@ -11,6 +11,13 @@
 #include <QSqlError>
 #include <QSqlQuery>
 
+#include <QJsonDocument>
+#include <QJsonParseError>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QFile>
+#include <QJsonValue>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -63,6 +70,7 @@ void MainWindow::initUi()
    connect(action3,SIGNAL(triggered()),this,SLOT(action3_showGraphics()));
    connect(action4,SIGNAL(triggered()),this,SLOT(action4_showGraphics()));
    connect(action5,SIGNAL(triggered()),this,SLOT(action5_showGraphics()));
+   connect(action6,SIGNAL(triggered()),this,SLOT(action6_showDialog()));
    connect(action8,SIGNAL(triggered()),this,SLOT(action8_showDialog()));
 }
 
@@ -241,11 +249,83 @@ void MainWindow::action5_showGraphics()
     m_dialog5->show();
 }
 
+void MainWindow::action6_showDialog()
+{
+    QDialog *dialog = new QDialog(this);
+    dialog->setFixedSize(QSize(800,800));
+    dialog->setWindowTitle(tr("json解析"));
+    QLabel *label = new QLabel(dialog);
+    QString txt = "json解析:";
+    txt.append('\n');
+
+    QFile file("data.json");
+    if(!file.open(QIODevice::ReadOnly|QIODevice::Text))
+    {
+        qDebug() <<"file not exist!";
+    }
+    QString value = file.readAll();
+    qDebug() << value;
+
+    file.close();
+
+    QJsonParseError parseJsonErr;
+    QJsonDocument document = QJsonDocument::fromJson(value.toUtf8());
+    if(!parseJsonErr.error == QJsonParseError::NoError)
+    {
+        qDebug() << tr("解析出错");
+        return;
+    }
+    QJsonObject jsonObject = document.object();
+    qDebug() << "jsonObject[name] ==" << jsonObject["name"].toString();
+
+    if(jsonObject.contains(QStringLiteral("secendName")))
+    {
+        QJsonValue jsonValuList = jsonObject.value(QStringLiteral("secondName"));
+        QJsonObject item = jsonValuList.toObject();
+        qDebug() << "item[thirdName] == " << item["thirdName"].toString();
+    }
+
+    if(jsonObject.contains(QStringLiteral("recoveryPrimaryNode")))
+    {
+        QJsonValue arrayValue = jsonObject.value(QStringLiteral("recoveryPrimaryNode"));
+           if(arrayValue.isArray())
+           {
+               QJsonArray array = arrayValue.toArray();
+               for(int i=0;i<array.size();i++)
+               {
+                   QJsonValue iconArray = array.at(i);
+                   QJsonObject icon = iconArray.toObject();
+                   QString id = icon["id"].toString();
+                   QString iconTxt = icon["iconTxt"].toString();
+                   QString iconName = icon["iconName"].toString();
+                   qDebug()<<"id="<<id<<"iconTxt="<<iconTxt<<"iconName="<<iconName;
+                   txt.append(id);
+                   txt.append('\t');
+                   txt.append(iconTxt);
+                   txt.append('\t');
+                   txt.append(iconName);
+                   txt.append('\n');
+               }
+           }
+       }
+    label->setText(txt);
+    dialog->show();
+}
+
 void MainWindow::action8_showDialog()
 {
     m_dialog6 = new QDialog(this);
     m_dialog6->setFixedSize(QSize(800,800));
     m_dialog6->setWindowTitle(tr("tcp/ip测试"));
+    QLabel *label1 = new QLabel(m_dialog6);
+    label1->setGeometry(20,20,100,100);
+    label1->setText(tr("ip地址:"));
+    QLabel *label2 = new QLabel(m_dialog6);
+    label2->setGeometry(20,20,100,100);
+    label2->setText(tr("端口"));
+    label1->setGeometry(20,120,100,100);
+
+
 
     m_dialog6->show();
 }

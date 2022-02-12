@@ -1,0 +1,9 @@
+{
+    "name":"value",
+    "secondName":{"thirdName":"thirdValue"},
+    "recoveryPrimaryNode":[
+        {"id":"1","iconTxt":"图片","iconName":"1.jpg"},
+        {"id":"2","iconTxt":"视频","iconName":"2.jpg"},
+        {"id":"3","iconTxt":"文本","iconName":"3.jpg"},
+        {"id":"4","iconTxt":"压缩包","iconName":"4.jpg"}]
+}
