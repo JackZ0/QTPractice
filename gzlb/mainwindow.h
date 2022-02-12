@@ -43,12 +43,14 @@ private:
     QDialog *m_dialog3;
     QDialog *m_dialog4;
     QDialog *m_dialog5;
+    QDialog *m_dialog6;
 
 private slots:
     void action1_sqlite();
     void action3_showGraphics();
     void action4_showGraphics();
     void action5_showGraphics();
+    void action8_showDialog();
 
 
 };

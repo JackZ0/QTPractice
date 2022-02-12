@@ -63,6 +63,7 @@ void MainWindow::initUi()
    connect(action3,SIGNAL(triggered()),this,SLOT(action3_showGraphics()));
    connect(action4,SIGNAL(triggered()),this,SLOT(action4_showGraphics()));
    connect(action5,SIGNAL(triggered()),this,SLOT(action5_showGraphics()));
+   connect(action8,SIGNAL(triggered()),this,SLOT(action8_showDialog()));
 }
 
 
@@ -93,15 +94,15 @@ void MainWindow::action1_sqlite()
 
     QSqlQuery sql_query;
 
-    if(!sql_query.exec("INSERT INTO main.HDR (Id, Value, timestamp) VALUES (1, 23.0, '2022-2-11 00:02:00');"))
-        {
-            qDebug() << sql_query.lastError();
-        }
-        else
-        {
-            qDebug() << "inserted 1!";
-        }
-
+    if(!sql_query.exec("INSERT INTO main.HDR (Id, Value, timestamp) VALUES (1, 23.0, '2022-2-11 00:01:03');"))
+    {
+        qDebug() << sql_query.lastError();
+    }
+    else
+    {
+        qDebug() << "inserted 1!";
+    }
+    database.close();
 
    QTableWidget *m_tablewidget = new QTableWidget(m_dialog1);
    QRect m_rect(100,100,500,500);
@@ -238,5 +239,14 @@ void MainWindow::action5_showGraphics()
     //重绘 每次改变完以后都要调用这个进行重新绘制
     customPlot3->replot();
     m_dialog5->show();
+}
+
+void MainWindow::action8_showDialog()
+{
+    m_dialog6 = new QDialog(this);
+    m_dialog6->setFixedSize(QSize(800,800));
+    m_dialog6->setWindowTitle(tr("tcp/ip测试"));
+
+    m_dialog6->show();
 }
 
