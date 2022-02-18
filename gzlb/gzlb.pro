@@ -1,4 +1,4 @@
-QT       += core gui xml sql
+QT       += core gui xml sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
@@ -16,6 +16,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     qcustomplot.cpp \
+    tcpserverdialog.cpp \
     xml/xml.cpp
 
 HEADERS += \
@@ -25,10 +26,12 @@ HEADERS += \
     cJson/cJSON_Utils.h \
     mainwindow.h \
     qcustomplot.h \
+    tcpserverdialog.h \
     xml/xml.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    tcpserverdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

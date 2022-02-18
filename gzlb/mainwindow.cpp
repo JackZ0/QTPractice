@@ -4,6 +4,8 @@
 #include "Algorithm/fibonacci.h"
 #include "Algorithm/factorial.h"
 #include "xml/xml.h"
+#include "tcpserverdialog.h"
+
 #include <QVector>
 #include <QDialog>
 #include <QTableWidget>
@@ -82,15 +84,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::action1_sqlite()
 {
-   m_dialog1 = new QDialog(this);
-   m_dialog1->setFixedSize(QSize(800,800));
-   m_dialog1->setWindowTitle(tr("sqlite 数据"));
-
-   //建立并打开数据库
-   QSqlDatabase database;
-   database = QSqlDatabase::addDatabase("QSQLITE");
-   database.setDatabaseName("test.db");
-
+    m_dialog1 = new QDialog(this);
+    m_dialog1->setFixedSize(QSize(800,800));
+    m_dialog1->setWindowTitle(tr("sqlite 数据"));
+    //建立并打开数据库
+    QSqlDatabase database;
+    database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("test.db");
     if (!database.open())
     {
       qDebug() << "Error: Failed to connect database." << database.lastError();
@@ -99,9 +99,7 @@ void MainWindow::action1_sqlite()
     {
       qDebug() << "Succeed to connect database." ;
     }
-
     QSqlQuery sql_query;
-
     if(!sql_query.exec("INSERT INTO main.HDR (Id, Value, timestamp) VALUES (1, 23.0, '2022-2-11 00:01:03');"))
     {
         qDebug() << sql_query.lastError();
@@ -111,7 +109,6 @@ void MainWindow::action1_sqlite()
         qDebug() << "inserted 1!";
     }
     database.close();
-
    QTableWidget *m_tablewidget = new QTableWidget(m_dialog1);
    QRect m_rect(100,100,500,500);
    m_tablewidget->setColumnCount(5);
@@ -314,16 +311,8 @@ void MainWindow::action6_showDialog()
 
 void MainWindow::action8_showDialog()
 {
-    m_dialog6 = new QDialog(this);
-    m_dialog6->setFixedSize(QSize(800,800));
-    m_dialog6->setWindowTitle(tr("tcp/ip测试"));
-    QLabel *label1 = new QLabel(m_dialog6);
-    label1->setGeometry(20,20,100,100);
-    label1->setText(tr("ip地址:"));
-    QLabel *label2 = new QLabel(m_dialog6);
-    label2->setGeometry(20,20,100,100);
-    label2->setText(tr("端口"));
-    label1->setGeometry(20,120,100,100);
+    m_dialog6 = new TcpserverDialog(this);
+
 
 
 
