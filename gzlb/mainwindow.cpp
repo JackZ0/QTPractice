@@ -4,7 +4,7 @@
 #include "Algorithm/fibonacci.h"
 #include "Algorithm/factorial.h"
 #include "xml/xml.h"
-#include "tcpserverdialog.h"
+#include "Tcp/widget.h"
 
 #include <QVector>
 #include <QDialog>
@@ -311,11 +311,7 @@ void MainWindow::action6_showDialog()
 
 void MainWindow::action8_showDialog()
 {
-    m_dialog6 = new TcpserverDialog(this);
-
-
-
-
-    m_dialog6->show();
+    m_widget1 = new Widget(nullptr);
+    m_widget1->show();
 }
 

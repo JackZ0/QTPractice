@@ -11,27 +11,29 @@ CONFIG += c++11
 SOURCES += \
     Algorithm/factorial.cpp \
     Algorithm/fibonacci.cpp \
+    Tcp/clenthandler.cpp \
+    Tcp/serverhandler.cpp \
+    Tcp/widget.cpp \
     cJson/cJSON.c \
     cJson/cJSON_Utils.c \
     main.cpp \
     mainwindow.cpp \
     qcustomplot.cpp \
-    tcpserverdialog.cpp \
     xml/xml.cpp
 
 HEADERS += \
     Algorithm/factorial.h \
     Algorithm/fibonacci.h \
+    Tcp/widget.h \
     cJson/cJSON.h \
     cJson/cJSON_Utils.h \
     mainwindow.h \
     qcustomplot.h \
-    tcpserverdialog.h \
     xml/xml.h
 
 FORMS += \
-    mainwindow.ui \
-    tcpserverdialog.ui
+    Tcp/widget.ui \
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
