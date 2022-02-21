@@ -24,8 +24,10 @@ private:
     QLabel *m_status = nullptr;
     Console *m_console = nullptr;
     SettingsDialog *m_setting = nullptr;
+    QSerialPort *m_serial = nullptr;
 
     void initActionsConnections();
+    void showStatusMessage(const QString &message);
 private slots:
     void openSerialPort();
     void closeSerialPort();

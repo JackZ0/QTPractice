@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>884</width>
     <height>600</height>
    </rect>
   </property>
@@ -22,14 +22,15 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>884</width>
      <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuConnect">
     <property name="title">
-     <string>Connect</string>
+     <string>Calls</string>
     </property>
+    <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
@@ -52,9 +53,12 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="QToolBar" name="MaintoolBar">
    <property name="windowTitle">
     <string>toolBar</string>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::AllToolBarAreas</set>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -64,32 +68,65 @@
    </attribute>
   </widget>
   <action name="actionDisconnect">
+   <property name="icon">
+    <iconset resource="terminal.qrc">
+     <normaloff>:/images/disconnect.png</normaloff>:/images/disconnect.png</iconset>
+   </property>
    <property name="text">
     <string>Disconnect</string>
    </property>
   </action>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="terminal.qrc">
+     <normaloff>:/images/application-exit.png</normaloff>:/images/application-exit.png</iconset>
+   </property>
    <property name="text">
     <string>Quit</string>
    </property>
   </action>
   <action name="actionConfigure">
+   <property name="icon">
+    <iconset resource="terminal.qrc">
+     <normaloff>:/images/settings.png</normaloff>:/images/settings.png</iconset>
+   </property>
    <property name="text">
     <string>Configure</string>
    </property>
   </action>
   <action name="actionClear">
+   <property name="icon">
+    <iconset resource="terminal.qrc">
+     <normaloff>:/images/clear.png</normaloff>:/images/clear.png</iconset>
+   </property>
    <property name="text">
     <string>Clear</string>
    </property>
   </action>
   <action name="actionAboutQt">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>AboutQt</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="icon">
+    <iconset resource="terminal.qrc">
+     <normaloff>:/images/connect.png</normaloff>:/images/connect.png</iconset>
+   </property>
+   <property name="text">
+    <string>Connect</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="terminal.qrc"/>
+ </resources>
  <connections/>
 </ui>
