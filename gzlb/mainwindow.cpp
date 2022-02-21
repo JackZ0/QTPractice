@@ -5,6 +5,7 @@
 #include "Algorithm/factorial.h"
 #include "xml/xml.h"
 #include "Tcp/widget.h"
+#include "serialport/serialmainwindow.h"
 
 #include <QVector>
 #include <QDialog>
@@ -74,6 +75,7 @@ void MainWindow::initUi()
    connect(action5,SIGNAL(triggered()),this,SLOT(action5_showGraphics()));
    connect(action6,SIGNAL(triggered()),this,SLOT(action6_showDialog()));
    connect(action8,SIGNAL(triggered()),this,SLOT(action8_showDialog()));
+   connect(action9,SIGNAL(triggered()),this,SLOT(action9_showDialog()));
 }
 
 
@@ -313,5 +315,11 @@ void MainWindow::action8_showDialog()
 {
     m_widget1 = new Widget(nullptr);
     m_widget1->show();
+}
+
+void MainWindow::action9_showDialog()
+{
+    m_window1 = new serialMainWindow(nullptr);
+    m_window1->show();
 }
 

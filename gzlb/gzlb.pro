@@ -1,4 +1,4 @@
-QT       += core gui xml sql network
+QT       += core gui xml sql network serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
@@ -19,6 +19,9 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     qcustomplot.cpp \
+    serialport/console.cpp \
+    serialport/serialmainwindow.cpp \
+    serialport/settingsdialog.cpp \
     xml/xml.cpp
 
 HEADERS += \
@@ -29,13 +32,29 @@ HEADERS += \
     cJson/cJSON_Utils.h \
     mainwindow.h \
     qcustomplot.h \
+    serialport/console.h \
+    serialport/serialmainwindow.h \
+    serialport/settingsdialog.h \
     xml/xml.h
 
 FORMS += \
     Tcp/widget.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    serialport/serialmainwindow.ui \
+    serialport/settingsdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    serialport/terminal.qrc \
+    serialport/terminal.qrc
+
+DISTFILES += \
+    serialport/images/application-exit.png \
+    serialport/images/clear.png \
+    serialport/images/connect.png \
+    serialport/images/disconnect.png \
+    serialport/images/settings.png

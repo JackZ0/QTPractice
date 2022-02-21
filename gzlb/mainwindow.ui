@@ -30,6 +30,11 @@
     <string>1</string>
    </property>
   </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

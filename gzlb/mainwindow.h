@@ -44,6 +44,7 @@ private:
     QDialog *m_dialog4;
     QDialog *m_dialog5;
     QWidget *m_widget1;
+    QMainWindow *m_window1;
 
 private slots:
     void action1_sqlite();
@@ -52,6 +53,8 @@ private slots:
     void action5_showGraphics();
     void action6_showDialog();
     void action8_showDialog();
+    void action9_showDialog();
+
 
 
 };
