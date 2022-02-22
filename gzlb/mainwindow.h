@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSystemTrayIcon>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -46,6 +48,17 @@ private:
     QWidget *m_widget1;
     QMainWindow *m_window1;
 
+    QAction *minimizeAction;
+
+
+    QSystemTrayIcon *m_systemIcon;
+    QMenu *m_trayIcomMenu;
+
+    void createTrayIcon();
+    void showMenu();
+    void showWindow();
+    void showMessage();
+
 private slots:
     void action1_sqlite();
     void action3_showGraphics();
@@ -54,6 +67,8 @@ private slots:
     void action6_showDialog();
     void action8_showDialog();
     void action9_showDialog();
+
+    void activeTray(QSystemTrayIcon::ActivationReason reason);
 
 
 

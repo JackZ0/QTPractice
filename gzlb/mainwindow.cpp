@@ -20,8 +20,7 @@
 #include <QJsonObject>
 #include <QFile>
 #include <QJsonValue>
-
-
+#include <QIcon>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -69,6 +68,17 @@ void MainWindow::initUi()
    menu6->addAction(action8);
    menu6->addAction(action9);
 
+//   m_systemIcon = new QSystemTrayIcon(this);
+
+//   QIcon icon = QIcon(":/Icon/thumb.ico");
+//   //QMenu
+//   QMenu *tuopanMenu = new QMenu(this);
+//   m_systemIcon->setIcon(icon);
+//   m_systemIcon->setContextMenu(tuopanMenu);
+//   m_systemIcon->show();
+//   setWindowIcon(icon);
+   createTrayIcon();
+
    connect(action1,SIGNAL(triggered()),this,SLOT(action1_sqlite()));
    connect(action3,SIGNAL(triggered()),this,SLOT(action3_showGraphics()));
    connect(action4,SIGNAL(triggered()),this,SLOT(action4_showGraphics()));
@@ -82,6 +92,44 @@ void MainWindow::initUi()
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::createTrayIcon()
+{
+    m_trayIcomMenu = new QMenu(this);
+    minimizeAction = new QAction(tr("Mi&nimize"), this);
+    connect(minimizeAction, &QAction::triggered, this, &QWidget::hide);
+
+    m_trayIcomMenu->addAction(minimizeAction);
+
+    m_systemIcon = new QSystemTrayIcon(this);
+    QIcon icon = QIcon(":/Icon/Icon/thumb.ico");
+    m_systemIcon->setIcon(icon);
+    m_systemIcon->setContextMenu(m_trayIcomMenu);
+    setWindowIcon(icon);
+    m_systemIcon->show();
+    connect(m_systemIcon, &QSystemTrayIcon::activated, this, &MainWindow::activeTray);
+    connect(m_systemIcon, &QSystemTrayIcon::messageClicked, this, &MainWindow::showWindow);
+
+}
+
+void MainWindow::showMenu()
+{
+    m_trayIcomMenu->show();
+}
+
+void MainWindow::showWindow()
+{
+    this->show();
+}
+
+void MainWindow::showMessage()
+{
+    m_systemIcon->showMessage("Information",//消息窗口标题
+            "There is a new message!",//消息内容
+            QSystemTrayIcon::MessageIcon::Information,//消息窗口图标
+            5000);
+
 }
 
 void MainWindow::action1_sqlite()
@@ -321,5 +369,22 @@ void MainWindow::action9_showDialog()
 {
     m_window1 = new serialMainWindow(nullptr);
     m_window1->show();
+}
+
+void MainWindow::activeTray(QSystemTrayIcon::ActivationReason reason)
+{
+    switch (reason)
+    {
+    case QSystemTrayIcon::Context:
+        showMenu();
+        break;
+    case QSystemTrayIcon::DoubleClick:
+        showWindow();
+        break;
+    case QSystemTrayIcon::Trigger:
+        showMessage();
+        break;
+    }
+
 }
 
