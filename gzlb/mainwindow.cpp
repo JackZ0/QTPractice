@@ -56,6 +56,7 @@ void MainWindow::initUi()
    action7 = new QAction(tr("xml解析"),this);
    action8 = new QAction(tr("tcp/ip"),this);
    action9 = new QAction(tr("串口"),this);
+   action10 = new QAction(tr("软件"));
    menu5->addAction(action1);
    menu5->addAction(action2);
    menu2->addAction(action3);
@@ -64,6 +65,8 @@ void MainWindow::initUi()
 
    menu3->addAction(action6);
    menu3->addAction(action7);
+
+   menu4->addAction(action10);
 
    menu6->addAction(action8);
    menu6->addAction(action9);
@@ -86,6 +89,7 @@ void MainWindow::initUi()
    connect(action6,SIGNAL(triggered()),this,SLOT(action6_showDialog()));
    connect(action8,SIGNAL(triggered()),this,SLOT(action8_showDialog()));
    connect(action9,SIGNAL(triggered()),this,SLOT(action9_showDialog()));
+   connect(action10,SIGNAL(triggered()),this,SLOT(action10_showMessage()));
 }
 
 
@@ -97,7 +101,7 @@ MainWindow::~MainWindow()
 void MainWindow::createTrayIcon()
 {
     m_trayIcomMenu = new QMenu(this);
-    minimizeAction = new QAction(tr("Mi&nimize"), this);
+    minimizeAction = new QAction(tr("Minimize"), this);
     connect(minimizeAction, &QAction::triggered, this, &QWidget::hide);
 
     m_trayIcomMenu->addAction(minimizeAction);
@@ -369,6 +373,11 @@ void MainWindow::action9_showDialog()
 {
     m_window1 = new serialMainWindow(nullptr);
     m_window1->show();
+}
+
+void MainWindow::action10_showMessage()
+{
+    QMessageBox::information(this,tr("欢迎加入"),tr("一起来码砖") ,QMessageBox::Ok);
 }
 
 void MainWindow::activeTray(QSystemTrayIcon::ActivationReason reason)

@@ -39,6 +39,8 @@ private:
     QAction *action8;
     QAction *action9;
 
+    QAction *action10;
+
 
     QDialog *m_dialog1;
     QDialog *m_dialog2;
@@ -67,6 +69,7 @@ private slots:
     void action6_showDialog();
     void action8_showDialog();
     void action9_showDialog();
+    void action10_showMessage();
 
     void activeTray(QSystemTrayIcon::ActivationReason reason);
 
