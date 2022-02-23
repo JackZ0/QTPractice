@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 
+#include "Speedo/speedo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -40,6 +41,9 @@ private:
     QAction *action9;
 
     QAction *action10;
+    QAction *action11;
+    QAction *action12;
+
 
 
     QDialog *m_dialog1;
@@ -56,6 +60,8 @@ private:
     QSystemTrayIcon *m_systemIcon;
     QMenu *m_trayIcomMenu;
 
+    Speedo *m_speedo;
+
     void createTrayIcon();
     void showMenu();
     void showWindow();
@@ -70,10 +76,8 @@ private slots:
     void action8_showDialog();
     void action9_showDialog();
     void action10_showMessage();
-
+    void action12_show();
     void activeTray(QSystemTrayIcon::ActivationReason reason);
-
-
 
 };
 #endif // MAINWINDOW_H

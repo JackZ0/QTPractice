@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     initUi();
     Xml xmltemp;
     xmltemp.UpdateXml("test.xml");
+
 }
 
 void MainWindow::initUi()
@@ -57,6 +58,10 @@ void MainWindow::initUi()
    action8 = new QAction(tr("tcp/ip"),this);
    action9 = new QAction(tr("串口"),this);
    action10 = new QAction(tr("软件"));
+
+   action12 = new QAction(tr("速度表"));
+   menu1->addAction(action12);
+
    menu5->addAction(action1);
    menu5->addAction(action2);
    menu2->addAction(action3);
@@ -90,6 +95,7 @@ void MainWindow::initUi()
    connect(action8,SIGNAL(triggered()),this,SLOT(action8_showDialog()));
    connect(action9,SIGNAL(triggered()),this,SLOT(action9_showDialog()));
    connect(action10,SIGNAL(triggered()),this,SLOT(action10_showMessage()));
+   connect(action12,SIGNAL(triggered()),this,SLOT(action12_show()));
 }
 
 
@@ -378,6 +384,13 @@ void MainWindow::action9_showDialog()
 void MainWindow::action10_showMessage()
 {
     QMessageBox::information(this,tr("欢迎加入"),tr("一起来码砖") ,QMessageBox::Ok);
+}
+
+void MainWindow::action12_show()
+{
+    m_speedo = new Speedo(nullptr);
+
+    m_speedo->show();
 }
 
 void MainWindow::activeTray(QSystemTrayIcon::ActivationReason reason)
