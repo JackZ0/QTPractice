@@ -27,6 +27,7 @@ private:
     QMenu *menu4;
     QMenu *menu5;
     QMenu *menu6;
+    QMenu *menu7;
 
     QAction *action1;
     QAction *action2;
@@ -43,6 +44,8 @@ private:
     QAction *action10;
     QAction *action11;
     QAction *action12;
+    QAction *action13;
+
 
 
 
@@ -77,6 +80,7 @@ private slots:
     void action9_showDialog();
     void action10_showMessage();
     void action12_show();
+    void aciton13_show();
     void activeTray(QSystemTrayIcon::ActivationReason reason);
 
 };

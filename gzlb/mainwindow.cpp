@@ -42,12 +42,16 @@ void MainWindow::initUi()
    menu4 = new QMenu(tr("&帮助"),this);
    menu5 = new QMenu(tr("&数据库测试"),this);
    menu6 = new QMenu(tr("&通訊"),this);
+   menu7 = new QMenu(tr("&转换"),this);
+
    menuBar()->addMenu(menu1);
    menuBar()->addMenu(menu2);
    menuBar()->addMenu(menu3);
    menuBar()->addMenu(menu4);
    menuBar()->addMenu(menu5);
    menuBar()->addMenu(menu6);
+   menuBar()->addMenu(menu7);
+
    action1 = new QAction(tr("sqlite"),this);
    action2 = new QAction(tr("mysql"),this);
    action3 = new QAction(tr("绘图1"),this);
@@ -60,7 +64,9 @@ void MainWindow::initUi()
    action10 = new QAction(tr("软件"));
 
    action12 = new QAction(tr("速度表"));
-   menu1->addAction(action12);
+   action13 = new QAction(tr("ASCI"));
+
+
 
    menu5->addAction(action1);
    menu5->addAction(action2);
@@ -75,6 +81,7 @@ void MainWindow::initUi()
 
    menu6->addAction(action8);
    menu6->addAction(action9);
+   menu7->addAction(action13);
 
 //   m_systemIcon = new QSystemTrayIcon(this);
 
@@ -391,6 +398,11 @@ void MainWindow::action12_show()
     m_speedo = new Speedo(nullptr);
 
     m_speedo->show();
+}
+
+void MainWindow::aciton13_show()
+{
+
 }
 
 void MainWindow::activeTray(QSystemTrayIcon::ActivationReason reason)

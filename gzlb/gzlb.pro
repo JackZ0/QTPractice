@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     Algorithm/factorial.cpp \
     Algorithm/fibonacci.cpp \
+    Convert/convert.cpp \
     Speedo/speedo.cpp \
     Tcp/clenthandler.cpp \
     Tcp/serverhandler.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
 HEADERS += \
     Algorithm/factorial.h \
     Algorithm/fibonacci.h \
+    Convert/convert.h \
     Speedo/speedo.h \
     Tcp/widget.h \
     cJson/cJSON.h \
@@ -40,6 +42,7 @@ HEADERS += \
     xml/xml.h
 
 FORMS += \
+    Convert/convert.ui \
     Speedo/speedo.ui \
     Tcp/widget.ui \
     mainwindow.ui \
