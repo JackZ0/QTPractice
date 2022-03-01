@@ -6,6 +6,7 @@
 #include "xml/xml.h"
 #include "Tcp/widget.h"
 #include "serialport/serialmainwindow.h"
+#include "thread/mythread.h"
 
 #include <QVector>
 #include <QDialog>
@@ -109,6 +110,19 @@ void MainWindow::initUi()
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::dealSignal()
+{
+    static int i = 0;
+    i++;
+
+}
+
+void MainWindow::dealClose()
+{
+    on_btnStop_clicked();
+    delete m_T;
 }
 
 void MainWindow::createTrayIcon()
@@ -422,3 +436,37 @@ void MainWindow::activeTray(QSystemTrayIcon::ActivationReason reason)
 
 }
 
+
+void MainWindow::on_btnStart_clicked()
+{
+    if(thread->isRunning() == true)
+    {
+        return;
+    }
+//启动线程，但是没有启动线程处理函数
+    thread->start();
+    m_T->setFlag(false);
+
+    //不能直接调用线程处理函数，直接调用导致线程处理函数和主线程在同一个线程
+    //myT->MyTimeout();
+
+    //只能通过 signal - slot方式
+    emit startThread();
+}
+
+void MainWindow::startThread()
+{
+
+}
+
+
+void MainWindow::on_btnStop_clicked()
+{
+    if(thread->isRunning() == false)
+    {
+        return ;
+    }
+    m_T->setFlag(true);
+    thread->quit();
+    thread->wait();
+}

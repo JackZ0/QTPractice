@@ -5,6 +5,7 @@
 #include <QSystemTrayIcon>
 
 #include "Speedo/speedo.h"
+#include "thread/mythread.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,6 +19,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     void initUi();
     ~MainWindow();
+
+    void dealSignal();
+    void dealClose();
 
 private:
     Ui::MainWindow *ui;
@@ -65,6 +69,9 @@ private:
 
     Speedo *m_speedo;
 
+    mythread *m_T;
+    QThread *thread;
+
     void createTrayIcon();
     void showMenu();
     void showWindow();
@@ -83,5 +90,8 @@ private slots:
     void aciton13_show();
     void activeTray(QSystemTrayIcon::ActivationReason reason);
 
+    void on_btnStart_clicked();
+    void startThread();  //启动子线程的信号
+    void on_btnStop_clicked();
 };
 #endif // MAINWINDOW_H

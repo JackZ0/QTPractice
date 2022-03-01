@@ -24,6 +24,7 @@ SOURCES += \
     serialport/console.cpp \
     serialport/serialmainwindow.cpp \
     serialport/settingsdialog.cpp \
+    thread/mythread.cpp \
     xml/xml.cpp
 
 HEADERS += \
@@ -39,6 +40,7 @@ HEADERS += \
     serialport/console.h \
     serialport/serialmainwindow.h \
     serialport/settingsdialog.h \
+    thread/mythread.h \
     xml/xml.h
 
 FORMS += \
