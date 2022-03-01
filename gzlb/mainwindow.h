@@ -6,6 +6,8 @@
 
 #include "Speedo/speedo.h"
 #include "thread/mythread.h"
+#include "Convert/convert.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -49,6 +51,8 @@ private:
     QAction *action11;
     QAction *action12;
     QAction *action13;
+    QAction *action14;
+
 
 
 
@@ -71,6 +75,7 @@ private:
 
     mythread *m_T;
     QThread *thread;
+    Convert *m_convert;
 
     void createTrayIcon();
     void showMenu();

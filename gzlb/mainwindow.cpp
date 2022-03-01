@@ -7,6 +7,7 @@
 #include "Tcp/widget.h"
 #include "serialport/serialmainwindow.h"
 #include "thread/mythread.h"
+#include "Convert/convert.h"
 
 #include <QVector>
 #include <QDialog>
@@ -66,7 +67,9 @@ void MainWindow::initUi()
 
    action12 = new QAction(tr("速度表"));
    action13 = new QAction(tr("ASCI"));
+   action14 = new QAction(tr("测试"));
 
+   menu1->addAction(action14);
 
 
    menu5->addAction(action1);
@@ -104,6 +107,7 @@ void MainWindow::initUi()
    connect(action9,SIGNAL(triggered()),this,SLOT(action9_showDialog()));
    connect(action10,SIGNAL(triggered()),this,SLOT(action10_showMessage()));
    connect(action12,SIGNAL(triggered()),this,SLOT(action12_show()));
+   connect(action13,SIGNAL(triggered()),this,SLOT(aciton13_show()));
 }
 
 
@@ -416,7 +420,8 @@ void MainWindow::action12_show()
 
 void MainWindow::aciton13_show()
 {
-
+    m_convert = new Convert(this);
+    m_convert->show();
 }
 
 void MainWindow::activeTray(QSystemTrayIcon::ActivationReason reason)

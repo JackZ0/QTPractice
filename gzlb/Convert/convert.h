@@ -14,6 +14,8 @@ class Convert : public QWidget
 public:
     explicit Convert(QWidget *parent = nullptr);
     ~Convert();
+    void convertStringToHex(const QString &str, QByteArray &byteData);\
+    char convertCharToHex(char ch);
 
 private slots:
     void on_btn1_clicked();
