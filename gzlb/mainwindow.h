@@ -96,7 +96,10 @@ private slots:
     void activeTray(QSystemTrayIcon::ActivationReason reason);
 
     void on_btnStart_clicked();
-    void startThread();  //启动子线程的信号
+    //void startThread();  //启动子线程的信号
     void on_btnStop_clicked();
+
+signals:
+    void startMyThread();
 };
 #endif // MAINWINDOW_H

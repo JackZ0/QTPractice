@@ -2,6 +2,7 @@
 #define MYTHREAD_H
 
 #include <QObject>
+#include <QThread>
 
 class mythread : public QObject
 {
@@ -10,17 +11,19 @@ public:
     explicit mythread(QObject *parent = nullptr);
     ~mythread();
 
-    void MyTimeout();
-
+    void myTimeOut();
     void setFlag(bool flag = true);
 
+
 signals:
-    void mySignal();
+    void myThreadSignal();
 
 public slots:
 
 private:
     bool m_isStop;
+
+
 
 
 };

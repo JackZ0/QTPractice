@@ -33,6 +33,17 @@ MainWindow::MainWindow(QWidget *parent)
     initUi();
     Xml xmltemp;
     xmltemp.UpdateXml("test.xml");
+    m_T = new mythread;
+    thread = new QThread(this);
+
+    m_T->moveToThread(thread);
+    connect(m_T,&mythread::myThreadSignal,this,&MainWindow::dealSignal);
+    qDebug() << "主进程ID:" <<QThread::currentThread() << endl;
+    connect(this, &MainWindow::startMyThread,m_T, &mythread::myTimeOut);
+    connect(this,&MainWindow::destroyed,this,&MainWindow::dealClose);
+
+
+
 
 }
 
@@ -86,7 +97,7 @@ void MainWindow::initUi()
    menu6->addAction(action8);
    menu6->addAction(action9);
    menu7->addAction(action13);
-
+   ui->lcdNumber->display("0000");
 //   m_systemIcon = new QSystemTrayIcon(this);
 
 //   QIcon icon = QIcon(":/Icon/thumb.ico");
@@ -108,6 +119,8 @@ void MainWindow::initUi()
    connect(action10,SIGNAL(triggered()),this,SLOT(action10_showMessage()));
    connect(action12,SIGNAL(triggered()),this,SLOT(action12_show()));
    connect(action13,SIGNAL(triggered()),this,SLOT(aciton13_show()));
+
+
 }
 
 
@@ -120,7 +133,7 @@ void MainWindow::dealSignal()
 {
     static int i = 0;
     i++;
-
+    ui->lcdNumber->display(i);
 }
 
 void MainWindow::dealClose()
@@ -448,21 +461,25 @@ void MainWindow::on_btnStart_clicked()
     {
         return;
     }
-//启动线程，但是没有启动线程处理函数
+    //启动子线程，但没有启动线程处理函数
     thread->start();
     m_T->setFlag(false);
 
-    //不能直接调用线程处理函数，直接调用导致线程处理函数和主线程在同一个线程
-    //myT->MyTimeout();
+    //**************************************************
+    //不能够直接调用该线程处理函数
+    //不然的话，都会导致线程处理函数和主线程是在同一个线程
+    // myThread->MyTimeout();
+    //**************************************************
 
-    //只能通过 signal - slot方式
-    emit startThread();
+
+    //只能够通过 signal - slot 来调用线程处理函数
+    emit startMyThread();
 }
 
-void MainWindow::startThread()
-{
-
-}
+//void MainWindow::startThread()
+//{
+//    m_T->myTimeOut();
+//}
 
 
 void MainWindow::on_btnStop_clicked()

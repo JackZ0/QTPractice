@@ -17,6 +17,10 @@ public:
     void convertStringToHex(const QString &str, QByteArray &byteData);\
     char convertCharToHex(char ch);
 
+
+    char *chstohex ( char* chs );
+    char *hextochs ( char* ascii );
+
 private slots:
     void on_btn1_clicked();
 
