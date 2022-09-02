@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qcustomplot.h"
 #include "Algorithm/fibonacci.h"
@@ -8,6 +8,7 @@
 #include "serialport/serialmainwindow.h"
 #include "thread/mythread.h"
 #include "Convert/convert.h"
+#include "qroundprogressbar.h"
 
 #include <QVector>
 #include <QDialog>
@@ -29,33 +30,35 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     ui->setupUi(this);
-    this->setWindowTitle("通用qt框架代码总结");
+    this->setWindowTitle(QString::fromLocal8Bit("通用qt框架代码总结"));
     initUi();
     Xml xmltemp;
     xmltemp.UpdateXml("test.xml");
     m_T = new mythread;
     thread = new QThread(this);
-
+    m_counter = 0;
     m_T->moveToThread(thread);
+    m_timer = new QTimer();
+    m_timer->setInterval(50);
+
     connect(m_T,&mythread::myThreadSignal,this,&MainWindow::dealSignal);
     qDebug() << "主进程ID:" <<QThread::currentThread() << endl;
     connect(this, &MainWindow::startMyThread,m_T, &mythread::myTimeOut);
     connect(this,&MainWindow::destroyed,this,&MainWindow::dealClose);
-
-
+    connect(m_timer,SIGNAL(timeout()),this,SLOT(counterAdd()));
 
 
 }
 
 void MainWindow::initUi()
 {
-   menu1 = new QMenu(tr("&操作"),this);
-   menu2 = new QMenu(tr("&显示"),this);
-   menu3 = new QMenu(tr("&分析"),this);
-   menu4 = new QMenu(tr("&帮助"),this);
-   menu5 = new QMenu(tr("&数据库测试"),this);
-   menu6 = new QMenu(tr("&通訊"),this);
-   menu7 = new QMenu(tr("&转换"),this);
+   menu1 = new QMenu(QString::fromLocal8Bit("&操作"),this);
+   menu2 = new QMenu(QString::fromLocal8Bit("&显示"),this);
+   menu3 = new QMenu(QString::fromLocal8Bit("&分析"),this);
+   menu4 = new QMenu(QString::fromLocal8Bit("&帮助"),this);
+   menu5 = new QMenu(QString::fromLocal8Bit(("&数据库测试")),this);
+   menu6 = new QMenu(QString::fromLocal8Bit("&通訊"),this);
+   menu7 = new QMenu(QString::fromLocal8Bit("&转换"),this);
 
    menuBar()->addMenu(menu1);
    menuBar()->addMenu(menu2);
@@ -67,18 +70,19 @@ void MainWindow::initUi()
 
    action1 = new QAction(tr("sqlite"),this);
    action2 = new QAction(tr("mysql"),this);
-   action3 = new QAction(tr("绘图1"),this);
-   action4 = new QAction(tr("绘图2"),this);
-   action5 = new QAction(tr("绘图3"),this);
-   action6 = new QAction(tr("json解析"),this);
-   action7 = new QAction(tr("xml解析"),this);
-   action8 = new QAction(tr("tcp/ip"),this);
-   action9 = new QAction(tr("串口"),this);
-   action10 = new QAction(tr("软件"));
+   action3 = new QAction(QString::fromLocal8Bit("绘图1"),this);
+   action4 = new QAction(QString::fromLocal8Bit("绘图2"),this);
+   action5 = new QAction(QString::fromLocal8Bit("绘图3"),this);
+   action6 = new QAction(QString::fromLocal8Bit("json解析"),this);
+   action7 = new QAction(QString::fromLocal8Bit("xml解析"),this);
+   action8 = new QAction(QString::fromLocal8Bit("tcp/ip"),this);
+   action9 = new QAction(QString::fromLocal8Bit("串口"),this);
+   action10 = new QAction(QString::fromLocal8Bit("软件"));
 
-   action12 = new QAction(tr("速度表"));
-   action13 = new QAction(tr("ASCI"));
-   action14 = new QAction(tr("测试"));
+   action12 = new QAction(QString::fromLocal8Bit("速度表"));
+   action13 = new QAction(QString::fromLocal8Bit("ASCI"));
+   action14 = new QAction(QString::fromLocal8Bit("测试"));
+   action15 = new QAction(QString::fromLocal8Bit("进度条测试"));
 
    menu1->addAction(action14);
 
@@ -88,6 +92,7 @@ void MainWindow::initUi()
    menu2->addAction(action3);
    menu2->addAction(action4);
    menu2->addAction(action5);
+   menu2->addAction(action15);
 
    menu3->addAction(action6);
    menu3->addAction(action7);
@@ -97,7 +102,9 @@ void MainWindow::initUi()
    menu6->addAction(action8);
    menu6->addAction(action9);
    menu7->addAction(action13);
+   menu7->addAction(action12);
    ui->lcdNumber->display("0000");
+
 //   m_systemIcon = new QSystemTrayIcon(this);
 
 //   QIcon icon = QIcon(":/Icon/thumb.ico");
@@ -119,6 +126,7 @@ void MainWindow::initUi()
    connect(action10,SIGNAL(triggered()),this,SLOT(action10_showMessage()));
    connect(action12,SIGNAL(triggered()),this,SLOT(action12_show()));
    connect(action13,SIGNAL(triggered()),this,SLOT(aciton13_show()));
+   connect(action15,SIGNAL(triggered()),this,SLOT(aciton15_show()));
 
 
 }
@@ -437,6 +445,18 @@ void MainWindow::aciton13_show()
     m_convert->show();
 }
 
+void MainWindow::aciton15_show()
+{
+    tempBar = new QRoundProgressBar(nullptr);
+
+    m_timer->start(1000);
+    tempBar->setDataPenWidth(8);
+    tempBar->setOutlinePenWidth(3);
+    tempBar->setStartAngle(0);
+
+    tempBar->show();
+}
+
 void MainWindow::activeTray(QSystemTrayIcon::ActivationReason reason)
 {
     switch (reason)
@@ -451,7 +471,6 @@ void MainWindow::activeTray(QSystemTrayIcon::ActivationReason reason)
         showMessage();
         break;
     }
-
 }
 
 
@@ -491,4 +510,11 @@ void MainWindow::on_btnStop_clicked()
     m_T->setFlag(true);
     thread->quit();
     thread->wait();
+}
+
+void MainWindow::counterAdd()
+{
+    m_counter++;
+    tempBar->setValue(m_counter);
+
 }

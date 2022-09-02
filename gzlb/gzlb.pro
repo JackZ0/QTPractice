@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     qcustomplot.cpp \
+    qroundprogressbar.cpp \
     serialport/console.cpp \
     serialport/serialmainwindow.cpp \
     serialport/settingsdialog.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     cJson/cJSON_Utils.h \
     mainwindow.h \
     qcustomplot.h \
+    qroundprogressbar.h \
     serialport/console.h \
     serialport/serialmainwindow.h \
     serialport/settingsdialog.h \

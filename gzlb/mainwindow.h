@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -7,6 +7,7 @@
 #include "Speedo/speedo.h"
 #include "thread/mythread.h"
 #include "Convert/convert.h"
+#include "qroundprogressbar.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -52,6 +53,7 @@ private:
     QAction *action12;
     QAction *action13;
     QAction *action14;
+    QAction *action15;
 
 
 
@@ -77,6 +79,11 @@ private:
     QThread *thread;
     Convert *m_convert;
 
+
+    QTimer *m_timer;
+
+    QRoundProgressBar *tempBar;
+    int m_counter;
     void createTrayIcon();
     void showMenu();
     void showWindow();
@@ -93,11 +100,13 @@ private slots:
     void action10_showMessage();
     void action12_show();
     void aciton13_show();
+    void aciton15_show();
     void activeTray(QSystemTrayIcon::ActivationReason reason);
 
     void on_btnStart_clicked();
     //void startThread();  //启动子线程的信号
     void on_btnStop_clicked();
+    void counterAdd();
 
 signals:
     void startMyThread();
