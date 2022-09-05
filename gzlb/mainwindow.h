@@ -1,8 +1,9 @@
-﻿#ifndef MAINWINDOW_H
+#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
+
 
 #include "Speedo/speedo.h"
 #include "thread/mythread.h"
@@ -54,6 +55,8 @@ private:
     QAction *action13;
     QAction *action14;
     QAction *action15;
+    QAction *action16;
+
 
 
 
@@ -64,6 +67,8 @@ private:
     QDialog *m_dialog3;
     QDialog *m_dialog4;
     QDialog *m_dialog5;
+    QDialog *m_dialog6;
+
     QWidget *m_widget1;
     QMainWindow *m_window1;
 
@@ -101,6 +106,7 @@ private slots:
     void action12_show();
     void aciton13_show();
     void aciton15_show();
+    void action16_showGraphics();
     void activeTray(QSystemTrayIcon::ActivationReason reason);
 
     void on_btnStart_clicked();
