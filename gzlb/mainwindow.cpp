@@ -1,4 +1,4 @@
-﻿#include "mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qcustomplot.h"
 #include "Algorithm/fibonacci.h"
@@ -24,6 +24,8 @@
 #include <QFile>
 #include <QJsonValue>
 #include <QIcon>
+
+#include <QProgressBar>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -83,6 +85,7 @@ void MainWindow::initUi()
    action13 = new QAction(QString::fromLocal8Bit("ASCI"));
    action14 = new QAction(QString::fromLocal8Bit("测试"));
    action15 = new QAction(QString::fromLocal8Bit("进度条测试"));
+   action16 = new QAction(QString::fromLocal8Bit("绘图算法1"),this);
 
    menu1->addAction(action14);
 
@@ -92,6 +95,7 @@ void MainWindow::initUi()
    menu2->addAction(action3);
    menu2->addAction(action4);
    menu2->addAction(action5);
+   menu2->addAction(action16);
    menu2->addAction(action15);
 
    menu3->addAction(action6);
@@ -127,6 +131,8 @@ void MainWindow::initUi()
    connect(action12,SIGNAL(triggered()),this,SLOT(action12_show()));
    connect(action13,SIGNAL(triggered()),this,SLOT(aciton13_show()));
    connect(action15,SIGNAL(triggered()),this,SLOT(aciton15_show()));
+   connect(action16,SIGNAL(triggered()),this,SLOT(action16_showGraphics()));
+
 
 
 }
@@ -352,6 +358,50 @@ void MainWindow::action5_showGraphics()
     m_dialog5->show();
 }
 
+#define POINT_COUNT 4000
+#define A_SANJIAO 3
+void MainWindow::action16_showGraphics()
+{
+    m_dialog6 = new QDialog(this);
+    m_dialog6->setFixedSize(QSize(1900,800));
+    m_dialog6->setWindowTitle(QString::fromLocal8Bit("三角函数"));
+
+    QCustomPlot *customPlot3 = new QCustomPlot(m_dialog6);
+    customPlot3->resize(1900, 800);
+    customPlot3->setGeometry(0,0,1900,800);
+    QVector<double> x(POINT_COUNT), y(POINT_COUNT); //初始化向量x和y
+
+    int i = 0;
+    for (int j=0; j<POINT_COUNT; j++)
+    {
+        x.push_back(j); // x范围[0,360]
+//        y.push_back(A_SANJIAO*sin((3.14/180)*j)); //
+//        y.push_back(A_SANJIAO*cos(0.017453292519943295*j)); //
+//        y.push_back(A_SANJIAO*tan(0.017453292519943295*j)); //
+        y.push_back(A_SANJIAO*sin((3.14/180)*j) - cos(3*0.017453292519943295*j) - cos(5*0.017453292519943295*j));
+    }
+    qDebug() << "y" <<y;
+    customPlot3->addGraph();//添加数据曲线（一个图像可以有多个数据曲线）
+
+    // graph(0);可以获取某个数据曲线（按添加先后排序）
+        // setData();为数据曲线关联数据
+
+    customPlot3->graph(0)->setData(x,y);
+    customPlot3->graph(0)->setName(QString::fromLocal8Bit("三角函数")); // 设置图例名称
+
+    customPlot3->xAxis->setLabel("x");
+    customPlot3->yAxis->setLabel("y");
+
+    customPlot3->xAxis->setRange(0,POINT_COUNT);
+    customPlot3->yAxis->setRange(-2*A_SANJIAO,2*A_SANJIAO);
+    customPlot3->legend->setVisible(true);
+
+    customPlot3->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+    //重绘 每次改变完以后都要调用这个进行重新绘制
+    customPlot3->replot();
+    m_dialog6->show();
+}
+
 void MainWindow::action6_showDialog()
 {
     QDialog *dialog = new QDialog(this);
@@ -450,7 +500,7 @@ void MainWindow::aciton15_show()
     tempBar = new QRoundProgressBar(nullptr);
 
     m_timer->start(1000);
-    tempBar->setDataPenWidth(8);
+    tempBar->setDataPenWidth(3);
     tempBar->setOutlinePenWidth(3);
     tempBar->setStartAngle(0);
 
@@ -515,6 +565,6 @@ void MainWindow::on_btnStop_clicked()
 void MainWindow::counterAdd()
 {
     m_counter++;
-    tempBar->setValue(m_counter);
-
+    tempBar->setValue(m_counter%100);
+    ui->progressBar->setValue(m_counter%100);
 }
