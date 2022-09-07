@@ -242,11 +242,9 @@ void MainWindow::action3_showGraphics()
     m_dialog3 = new QDialog(this);
     m_dialog3->setFixedSize(QSize(800,800));
     m_dialog3->setWindowTitle(tr("图表展示"));
-
     QCustomPlot *customPlot2 = new QCustomPlot(m_dialog3);
     customPlot2->resize(800, 800);
     customPlot2->setGeometry(0,0,800,800);
-
     //可变数组存放绘图的坐标的数据，分别存放x和y坐标的数据，101为数据长度
     QVector<double> x2(101),y2(101);
     //添加数据，这里演示y=x^3，为了正负对称，x从-10到+10
@@ -269,7 +267,6 @@ void MainWindow::action3_showGraphics()
     customPlot2->yAxis->setRange(0, 1100);
     customPlot2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
     m_dialog3->show();
-
 }
 
 void MainWindow::action4_showGraphics()
@@ -294,14 +291,11 @@ void MainWindow::action4_showGraphics()
     }
     //向绘图区域QCustomPlot添加一条曲线
     customPlot->addGraph();
-
     //添加数据
     customPlot->graph(0)->setData(x, y);
-
     //设置坐标轴名称
     customPlot->xAxis->setLabel("x");
     customPlot->yAxis->setLabel("y");
-
     //设置坐标轴显示范围，否则只能看到默认范围
     customPlot->xAxis->setRange(0, 10);
     customPlot->yAxis->setRange(0, 20000);
@@ -379,12 +373,13 @@ void MainWindow::action16_showGraphics()
 //        y.push_back(A_SANJIAO*cos(0.017453292519943295*j)); //
 //        y.push_back(A_SANJIAO*tan(0.017453292519943295*j)); //
         y.push_back(A_SANJIAO*sin((3.14/180)*j) - cos(3*0.017453292519943295*j) - cos(5*0.017453292519943295*j));
+//        y.push_back(0.12*cos(2*3.14*150*j) + cos(2*3.14*100*j));
     }
     qDebug() << "y" <<y;
     customPlot3->addGraph();//添加数据曲线（一个图像可以有多个数据曲线）
 
-    // graph(0);可以获取某个数据曲线（按添加先后排序）
-        // setData();为数据曲线关联数据
+    //graph(0); 可以获取某个数据曲线（按添加先后排序）
+   // setData();为数据曲线关联数据
 
     customPlot3->graph(0)->setData(x,y);
     customPlot3->graph(0)->setName(QString::fromLocal8Bit("三角函数")); // 设置图例名称
@@ -567,4 +562,9 @@ void MainWindow::counterAdd()
     m_counter++;
     tempBar->setValue(m_counter%100);
     ui->progressBar->setValue(m_counter%100);
+    if(m_counter == 100)
+    {
+        QMessageBox::question(nullptr, QString::fromLocal8Bit("提醒"), QString::fromLocal8Bit("进度已完成!"),
+                    QMessageBox::Ok);
+    }
 }
